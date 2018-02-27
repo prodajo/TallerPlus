@@ -3,7 +3,7 @@ import java.util.Date;
 // objeto para cada una de las citas que tiene un coche en el taller
 public class Cita {
     private String matricula;
-    private Date fechaHora;
+    private String fechaHora;
     private String descripcion;
     private float precio;
     private String estado;
@@ -12,15 +12,23 @@ public class Cita {
         return matricula;
     }
 
+    public Cita(String matricula, String fechaHora, String descripcion, float precio, String estado) {
+        this.matricula = matricula;
+        this.fechaHora = fechaHora;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.estado = estado;
+    }
+
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
-    public Date getFechaHora() {
+    public String getFechaHora() {
         return fechaHora;
     }
 
-    public void setFechaHora(Date fechaHora) {
+    public void setFechaHora(String fechaHora) {
         this.fechaHora = fechaHora;
     }
 
