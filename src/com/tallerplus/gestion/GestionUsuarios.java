@@ -31,6 +31,8 @@ public class GestionUsuarios {
                 break;
             }
         }
+        
+        //Implementar en gráficos.
         if(borrado==true)
             System.out.println("Usuario borrado.");
         else
