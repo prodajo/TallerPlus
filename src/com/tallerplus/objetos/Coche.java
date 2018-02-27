@@ -8,6 +8,16 @@ public class Coche {
         return matricula;
     }
 
+    public Coche(String matricula, String motor, String cilindrada, String caballos, String nombreDueño, String dni, String telefono) {
+        this.matricula = matricula;
+        this.motor = motor;
+        this.cilindrada = cilindrada;
+        this.caballos = caballos;
+        this.nombreDueño = nombreDueño;
+        this.dni = dni;
+        this.telefono = telefono;
+    }
+
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
