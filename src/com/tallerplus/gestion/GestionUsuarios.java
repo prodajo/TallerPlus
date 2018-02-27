@@ -25,7 +25,7 @@ public class GestionUsuarios {
     public static ArrayList<Usuario> borrarUsuario(String usuario,ArrayList<Usuario> usuarios){
         boolean borrado=false;
         for(int i=0;i<usuarios.size();i++){
-            if(usuarios.get(i).equals(usuario)){
+            if(usuarios.get(i).getUsuario().equals(usuario)){
                 usuarios.remove(i);
                 borrado=true;
                 break;
