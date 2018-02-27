@@ -4,7 +4,7 @@ public class Usuario {
     //tipo:admin,recepcion,mecanico.
     private String usuario,contrasena,tipo;
 
-    public Usuario(String usuario, String contraseña, String tipo) {
+    public Usuario(String usuario, String contrasena, String tipo) {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.tipo = tipo;
