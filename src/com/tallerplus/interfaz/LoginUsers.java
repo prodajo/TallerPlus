@@ -138,6 +138,7 @@ public class LoginUsers extends javax.swing.JFrame {
         //Lo mando al método que lo gestiona en la clase Login.
         boolean correcto=Login.comprobarUsuario(usuario, contrasena, Ficheros.usuarios);
         if(correcto==true)
+            //Si el usuario y la contraseña son correctos cierro ventana login.
             dispose();
     }//GEN-LAST:event_entrarMouseClicked
 
