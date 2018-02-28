@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Login {
+    static String usuario_logueado;
+    
+    public static String getUsuarioLogueado(){
+        return usuario_logueado;
+    }
     /**
      * Comprueba el usuario introducido en el formulario, si coincide con los usuarios ya registrados le abre su ventana correspondiente, si no
      * abre una ventana emergente informando al usuario.
@@ -30,6 +35,7 @@ public class Login {
                     lanzarVentanaPrincipal();
                 
                 encontrado=true;  
+                usuario_logueado=usuarios.get(i).getUsuario();
             }
             
         }
