@@ -13,7 +13,7 @@ public class Login {
      * @param contrasena contraseña introducida en el formulario "Login_users".
      * @param usuarios ArrayList con los usuarios almacenados.
      */
-    public static void comprobarUsuario(String usuario, String contrasena, ArrayList<Usuario> usuarios){
+    public static boolean comprobarUsuario(String usuario, String contrasena, ArrayList<Usuario> usuarios){
         boolean encontrado=false;
         for(int i=0;i<usuarios.size();i++){
             if((usuarios.get(i).getUsuario().equals(usuario))&&(usuarios.get(i).getContrasena().equals(contrasena))){
@@ -34,7 +34,8 @@ public class Login {
         
         if(encontrado==false)
             JOptionPane.showMessageDialog(null, "Los datos no coinciden, vuelva a intentarlo.", "Usuario o contraseña errónea", 0);
-            
+        
+        return encontrado;
     }
     /**
      * Lanza la ventana inicial del proyecto, la ventana "Login_users".
