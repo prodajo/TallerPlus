@@ -28,10 +28,11 @@ public class GestionCitas {
     public static ArrayList<Cita>borrarCita(String matricula,String fechaHora,ArrayList<Cita>citas){
         boolean borrado=false; // indicador de borrado que solo cambia a true si se encuentra la cita en cuestion
         for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula()==matricula || citas.get(i).getFechaHora()==fechaHora)
+            if(citas.get(i).getMatricula().equals(matricula) || citas.get(i).getFechaHora().equals(fechaHora)){
                 citas.remove(i);
                 borrado=true;
                 break;
+            }
         }
         // implementar en graficos
         if(borrado==true)
