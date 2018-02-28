@@ -12,6 +12,7 @@ public class Login {
      * @param usuario usuario introducido en el formulario "Login_users".
      * @param contrasena contraseña introducida en el formulario "Login_users".
      * @param usuarios ArrayList con los usuarios almacenados.
+     * return Devuelve si encontró al usuario o no.
      */
     public static boolean comprobarUsuario(String usuario, String contrasena, ArrayList<Usuario> usuarios){
         boolean encontrado=false;
