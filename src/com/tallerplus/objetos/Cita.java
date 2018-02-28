@@ -8,6 +8,9 @@ public class Cita {
     private float precio;
     private String estado;
 
+    public Cita() {
+    }
+
     public String getMatricula() {
         return matricula;
     }
