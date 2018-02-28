@@ -1,0 +1,3 @@
+admin,admin,admin
+recepcion,recepcion,recepcion
+mecanico,mecanico,mecanico
