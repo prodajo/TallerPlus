@@ -1,6 +1,6 @@
 package com.tallerplus.gestion;
 
-import com.tallerplus.interfaz.Login_users;
+import com.tallerplus.interfaz.LoginUsers;
 import com.tallerplus.objetos.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -40,7 +40,7 @@ public class Login {
      * Lanza la ventana inicial del proyecto, la ventana "Login_users".
      */
     public static void lanzarVentana(){
-        Login_users login=new Login_users();
+        LoginUsers login=new LoginUsers();
     }
     
 }
