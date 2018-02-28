@@ -18,8 +18,8 @@ public class Main {
         Ficheros.escribirFicheroUsuarios();
         
         //Lanzamos ventana Login para iniciar el programa.
-        Login.lanzarVentana();
-        VentanaPrincipal v=new VentanaPrincipal();
+        Login.lanzarVentanaLogin();
+        
         
     }
 }
