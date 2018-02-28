@@ -22,9 +22,9 @@ import java.util.Scanner;
 public class Ficheros {
     
     //Listas
-    static ArrayList<Usuario> usuarios=new ArrayList();
-    static ArrayList<Coche> coches=new ArrayList();
-    static ArrayList <Cita> citas=new ArrayList();
+    public static ArrayList<Usuario> usuarios=new ArrayList();
+    public static ArrayList<Coche> coches=new ArrayList();
+    public static ArrayList <Cita> citas=new ArrayList();
     //Array Atributos
     static String[] atributoscoche = new String[7];
     static String[] atributosusuario = new String[3];
@@ -101,7 +101,7 @@ public class Ficheros {
                         + "," + elemento.getCaballos()
                         + "," + elemento.getNombreDueño()
                         + "," + elemento.getDni()
-                        + "," + elemento.getTelefono());
+                        + "," + elemento.getTelefono()+"\n");
             }
             escribir.close();
         } catch (IOException ex) {
@@ -117,7 +117,7 @@ public class Ficheros {
             for (Usuario elemento : usuarios) {
                 escribir.write(elemento.getUsuario()
                         + "," + elemento.getContrasena()
-                        + "," + elemento.getTipo());
+                        + "," + elemento.getTipo()+"\n");
             }
             escribir.close();
         } catch (IOException ex) {
@@ -135,7 +135,7 @@ public class Ficheros {
                         + "," + elemento.getFechaHora()
                         + "," + elemento.getDescripcion()
                         + "," + elemento.getPrecio()
-                        + "," + elemento.getEstado());
+                        + "," + elemento.getEstado()+"\n");
             }
             escribir.close();
         } catch (IOException ex) {
