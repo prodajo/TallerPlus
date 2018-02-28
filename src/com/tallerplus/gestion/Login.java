@@ -1,6 +1,7 @@
 package com.tallerplus.gestion;
 
 import com.tallerplus.interfaz.LoginUsers;
+import com.tallerplus.interfaz.VentanaPrincipal;
 import com.tallerplus.objetos.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -20,13 +21,13 @@ public class Login {
             if((usuarios.get(i).getUsuario().equals(usuario))&&(usuarios.get(i).getContrasena().equals(contrasena))){
                 if(usuarios.get(i).getTipo().equals("admin"))
                     //Abrir ventana administrador.
-                    System.out.println("Abrir ventana admin");
+                    lanzarVentanaPrincipal();
                 else if(usuarios.get(i).getTipo().equals("recepcion"))
                     //Abrir ventana recepcion
-                    System.out.println("Abrir ventana recepcion");
+                    lanzarVentanaPrincipal();
                     else
                     //abrir ventana mecanico
-                    System.out.println("Abrir ventana mecanico");
+                    lanzarVentanaPrincipal();
                 
                 encontrado=true;  
             }
@@ -41,8 +42,14 @@ public class Login {
     /**
      * Lanza la ventana inicial del proyecto, la ventana "Login_users".
      */
-    public static void lanzarVentana(){
+    public static void lanzarVentanaLogin(){
         LoginUsers login=new LoginUsers();
+    }
+    /**
+     * Lanza la ventana principal del proyecto.
+     */
+    public static void lanzarVentanaPrincipal(){
+        VentanaPrincipal v=new VentanaPrincipal();
     }
     
 }
