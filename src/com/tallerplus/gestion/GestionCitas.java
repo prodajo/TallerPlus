@@ -53,8 +53,8 @@ public class GestionCitas {
     public static ArrayList<Cita>modificarCita(String matricula,String fechaHora,String descripcion,float precio,String estado,ArrayList<Cita>citas){ // no se pueden modificar los campo clave matricula y fecha, en caso de que esos datos esten mal hay que borrar la cita y generar una nueva
         boolean modificado=false;
         for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula()==matricula || citas.get(i).getFechaHora()==fechaHora)
-                if (citas.get(i).getDescripcion()!=descripcion){
+            if(citas.get(i).getMatricula().equals(matricula) || citas.get(i).getFechaHora().equals(fechaHora))
+                if (!citas.get(i).getDescripcion().equals(descripcion)){
                     citas.get(i).setDescripcion(descripcion);
                     modificado=true;
                 }
@@ -62,7 +62,7 @@ public class GestionCitas {
                 citas.get(i).setPrecio(precio);
                 modificado=true;
             }
-            if(citas.get(i).getDescripcion()!=descripcion){
+            if(!citas.get(i).getDescripcion().equals(descripcion)){
                 citas.get(i).setDescripcion(descripcion);
                 modificado=true;
             }
@@ -97,7 +97,7 @@ public class GestionCitas {
     public static ArrayList<Cita> verHistorial(String matricula,ArrayList<Cita>citas){ // ver historial de un determinado vehiculo
         ArrayList<Cita>citaCoche=new ArrayList<>();
         for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula()==matricula){
+            if(citas.get(i).getMatricula().equals(matricula)){
                 citaCoche.add(citas.get(i));
             }
             
