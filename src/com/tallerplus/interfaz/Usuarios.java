@@ -242,8 +242,9 @@ public class Usuarios extends javax.swing.JFrame {
         if(editar>=0){
             inusuario.setText(tablausuarios.getValueAt(editar,0).toString());
             incontrasena.setText(tablausuarios.getValueAt(editar,1).toString());
-            GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(editar).getUsuario());
-            tabla.removeRow(editar);
+            boolean correcto=GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(editar).getUsuario());
+            if(correcto!=false)
+                tabla.removeRow(editar);
             
         }else{
             JOptionPane.showMessageDialog(null,"Seleccione un usuario","Error",1);
