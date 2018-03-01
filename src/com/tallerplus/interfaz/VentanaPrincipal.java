@@ -385,14 +385,34 @@ public void mostrar(){
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel banadircita;
+    private javax.swing.JLabel batras;
+    private javax.swing.JLabel batras1;
+    private javax.swing.JLabel bañadircita;
+    private javax.swing.JLabel bañadircita1;
     private javax.swing.JLabel bborrarcita;
     private javax.swing.JLabel bbuscarcita;
+    private javax.swing.JLabel bcancelarcita;
+    private javax.swing.JLabel bcancelarcita1;
     private javax.swing.JLabel bcerrarcita;
     private javax.swing.JLabel bcliente;
     private javax.swing.JLabel bfactura;
     private javax.swing.JLabel bhistorialcliente;
     private javax.swing.JLabel busuario;
+    private javax.swing.JTextField indescripcion;
+    private javax.swing.JTextField indescripcion1;
+    private javax.swing.JTextField inestado;
+    private javax.swing.JTextField inestado1;
+    private javax.swing.JTextField infechahora;
+    private javax.swing.JTextField infechahora1;
+    private javax.swing.JTextField inmatricula;
+    private javax.swing.JTextField inmatricula1;
+    private javax.swing.JTextField inprecio;
+    private javax.swing.JTextField inprecio1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -401,9 +421,21 @@ public void mostrar(){
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelfechahora;
+    private javax.swing.JLabel labelfechahora1;
+    private javax.swing.JPanel panelacita;
+    private javax.swing.JPanel panelacita1;
     public static javax.swing.JPanel panelprincipal;
     // End of variables declaration//GEN-END:variables
 }
