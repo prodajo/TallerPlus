@@ -1,0 +1,6 @@
+1234,DD/MM/AAAA HH:MM,hhola,21.0,pendiente
+1224,DD/MM/AAAA HH:MM,hholaa,21.0,pendiente
+1224,DD/MM/AAAA HH:ff,adios,21.0,pendiente
+2332,DD/MM/AAAA HH:MM,32,32.0,32
+233332,DD/MM/AAAA HH:MM,32,32.0,32
+12DA,30/02/2019,no arranca,21.0,pendiente

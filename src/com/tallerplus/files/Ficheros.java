@@ -42,8 +42,8 @@ public class Ficheros {
         try {
             Scanner sc;
             sc = new Scanner(ficherocoches);
-            while (sc.hasNext()) {
-                linea = sc.next();
+            while (sc.hasNextLine()) {
+                linea = sc.nextLine();
                 atributoscoche = linea.split(",");
                 Coche c = new Coche(atributoscoche[0], atributoscoche[1], atributoscoche[2], atributoscoche[3], atributoscoche[4], atributoscoche[5], atributoscoche[6]);
                 coches.add(c);
@@ -60,8 +60,8 @@ public class Ficheros {
         try {
             Scanner sc;
             sc = new Scanner(ficherousuarios);
-            while (sc.hasNext()) {
-                linea = sc.next();
+            while (sc.hasNextLine()) {
+                linea = sc.nextLine();
                 atributosusuario = linea.split(",");
                 Usuario c = new Usuario(atributosusuario[0], atributosusuario[1], atributosusuario[2]);
                 usuarios.add(c);
@@ -77,8 +77,8 @@ public class Ficheros {
         try {
             Scanner sc;
             sc = new Scanner(ficherocitas);
-            while (sc.hasNext()) {
-                linea = sc.next();
+            while (sc.hasNextLine()) {
+                linea = sc.nextLine();
                 atributoscita = linea.split(",");
                 Cita c = new Cita(atributoscita[0], atributoscita[1], atributoscita[2], Float.parseFloat(atributoscita[3]), atributoscita[4]);
                 citas.add(c);

@@ -5,7 +5,8 @@
  */
 package com.tallerplus.interfaz;
 
-import static com.tallerplus.interfaz.VentanaPrincipal.panelprincipal;
+import com.tallerplus.files.Ficheros;
+import com.tallerplus.gestion.GestionCitas;
 /**
  *
  * @author dani_
@@ -62,6 +63,11 @@ public class AnadirCita extends javax.swing.JFrame {
         jLabel1.setText("Añadir Cita");
 
         infechahora.setText("DD/MM/AAAA HH:MM");
+        infechahora.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                infechahoraFocusGained(evt);
+            }
+        });
         infechahora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 infechahoraActionPerformed(evt);
@@ -170,18 +176,20 @@ public class AnadirCita extends javax.swing.JFrame {
                         .addComponent(batras)
                         .addGap(30, 30, 30))))
             .addGroup(panelacitaLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
                 .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panelacitaLayout.createSequentialGroup()
-                            .addComponent(labelfechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(infechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(panelacitaLayout.createSequentialGroup()
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(indescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelacitaLayout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelacitaLayout.createSequentialGroup()
+                                .addComponent(labelfechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(infechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelacitaLayout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(indescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelacitaLayout.createSequentialGroup()
+                        .addGap(210, 210, 210)
                         .addComponent(bañadircita)
                         .addGap(18, 18, 18)
                         .addComponent(bcancelarcita)))
@@ -262,14 +270,32 @@ public class AnadirCita extends javax.swing.JFrame {
  * @param evt 
  */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
+        String matricula,fechahora,estado,descripcion;
+        float precio=0f;
         
+        matricula=inmatricula.getText();
+        fechahora=infechahora.getText();
+        estado=inestado.getText();
+        precio=Integer.parseInt(inprecio.getText());
+        descripcion=indescripcion.getText();
+
+        GestionCitas.anadirCita(matricula, fechahora, descripcion, precio, estado);
+            
+        Ficheros.escribirFicheroCitas();
+        
+        inmatricula.setText("");
+        infechahora.setText("DD/MM/AAAA HH:MM");
+        inestado.setText("");
+        inprecio.setText("");
+        indescripcion.setText("");
     }//GEN-LAST:event_bañadircitaMouseClicked
 /**
  * Botón cancelar operación insertar cita
  * @param evt 
  */
     private void bcancelarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcancelarcitaMouseClicked
-        // TODO add your handling code here:
+        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        dispose();
     }//GEN-LAST:event_bcancelarcitaMouseClicked
 /**
  * Botón volver atrás
@@ -279,6 +305,10 @@ public class AnadirCita extends javax.swing.JFrame {
         VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
+
+    private void infechahoraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_infechahoraFocusGained
+        infechahora.setText("");
+    }//GEN-LAST:event_infechahoraFocusGained
 
     /**
      * @param args the command line arguments

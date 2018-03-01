@@ -1,5 +1,6 @@
 package com.tallerplus.gestion;
 
+import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -12,17 +13,19 @@ public class GestionCitas {
      * @param descripcion descripcion del problema del vehiculo
      * @param precio precio de la reparacion
      * @param estado estado de la reparacion
-     * @param citas lista de citas de los vehiculos 
-     * @return citas lista de citas de todos los vehiculos con la nueva cita añadida
      */
-    public static ArrayList<Cita>anadirCita(String matricula,String fechaHora,String descripcion,float precio,String estado,ArrayList<Cita>citas){
-        for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula().equals(matricula) && citas.get(i).getFechaHora().equals(fechaHora))
+    public static void anadirCita(String matricula,String fechaHora,String descripcion,float precio,String estado){
+        boolean encontrado=false;
+        for(int i=0;i<Ficheros.citas.size();i++){
+            if(Ficheros.citas.get(i).getMatricula().equals(matricula) && Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){
                 JOptionPane.showMessageDialog(null,"La cita ya existe en el sistema","cita no valida",0);
-            else    
-            citas.add(new Cita(matricula,fechaHora,descripcion,precio,estado));
+                encontrado=true;
+                break;
+            }
+            else;
         }
-        return citas;
+        if(encontrado==false)
+            Ficheros.citas.add(new Cita(matricula,fechaHora,descripcion,precio,estado));
     }
     /**
      * borra las citas de la lista de citas que tenemos 
