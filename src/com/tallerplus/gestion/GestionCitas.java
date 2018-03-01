@@ -2,6 +2,7 @@ package com.tallerplus.gestion;
 
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class GestionCitas {
     /**
@@ -15,7 +16,12 @@ public class GestionCitas {
      * @return citas lista de citas de todos los vehiculos con la nueva cita añadida
      */
     public static ArrayList<Cita>anadirCita(String matricula,String fechaHora,String descripcion,float precio,String estado,ArrayList<Cita>citas){
-        citas.add(new Cita(matricula,fechaHora,descripcion,precio,estado));
+        for(int i=0;i<citas.size();i++){
+            if(citas.get(i).getMatricula().equals(matricula) && citas.get(i).getFechaHora().equals(fechaHora))
+                JOptionPane.showMessageDialog(null,"La cita ya existe en el sistema","cita no valida",0);
+            else    
+            citas.add(new Cita(matricula,fechaHora,descripcion,precio,estado));
+        }
         return citas;
     }
     /**
@@ -28,7 +34,7 @@ public class GestionCitas {
     public static ArrayList<Cita>borrarCita(String matricula,String fechaHora,ArrayList<Cita>citas){
         boolean borrado=false; // indicador de borrado que solo cambia a true si se encuentra la cita en cuestion
         for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula().equals(matricula) || citas.get(i).getFechaHora().equals(fechaHora)){
+            if(citas.get(i).getMatricula().equals(matricula) && citas.get(i).getFechaHora().equals(fechaHora)){
                 citas.remove(i);
                 borrado=true;
                 break;
@@ -36,8 +42,8 @@ public class GestionCitas {
         }
         // implementar en graficos
         if(borrado==true)
-            System.out.println("cita eliminada");
-        else System.out.println("cita no encontrada");
+            JOptionPane.showMessageDialog(null,"cita eliminada","gestión de citas",1);
+        else JOptionPane.showMessageDialog(null,"cita no encontrada","gestión de citas",0);
         return citas;
         
     }
@@ -69,10 +75,10 @@ public class GestionCitas {
             }
             break;
         }
-        // implementar
+        
         if (modificado==true)
-            System.out.println("cita modificada");
-        else System.out.println("cita no encontrada, no se ha podido modificar");
+           JOptionPane.showMessageDialog(null,"cita modificada","modificación de citas",0);
+        else JOptionPane.showMessageDialog(null,"cita no encontrada, no se ha podido modificar","modificación de citas",0);
         return citas;
     }
     /**
