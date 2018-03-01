@@ -77,10 +77,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         busuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/social.png"))); // NOI18N
         busuario.setAlignmentY(0.0F);
+        busuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                busuarioMouseClicked(evt);
+            }
+        });
 
         bcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/007-chico.png"))); // NOI18N
+        bcliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bclienteMouseClicked(evt);
+            }
+        });
 
         bfactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/recepcion.png"))); // NOI18N
+        bfactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bfacturaMouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(240, 240, 240));
@@ -95,6 +110,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel8.setText("Clientes");
 
         bborrarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/004-error.png"))); // NOI18N
+        bborrarcita.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bborrarcitaMouseClicked(evt);
+            }
+        });
 
         banadircita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/002-mas.png"))); // NOI18N
         banadircita.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,10 +124,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         bhistorialcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/historial.png"))); // NOI18N
+        bhistorialcliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bhistorialclienteMouseClicked(evt);
+            }
+        });
 
         bbuscarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda.png"))); // NOI18N
+        bbuscarcita.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bbuscarcitaMouseClicked(evt);
+            }
+        });
 
         bcerrarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-exito.png"))); // NOI18N
+        bcerrarcita.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bcerrarcitaMouseClicked(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(240, 240, 240));
@@ -242,12 +277,64 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Evento al clickar foto "Añadir Cita"
+     * @param evt 
+     */
     private void banadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadircitaMouseClicked
         System.out.println("Hola");
         
         System.out.println(Login.getUsuarioLogueado());
     }//GEN-LAST:event_banadircitaMouseClicked
+    /**
+     * Evento al clickar foto "Borrar Cita"
+     * @param evt 
+     */
+    private void bborrarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bborrarcitaMouseClicked
+    /**
+     * Evento al clickar foto "Buscar Cita"
+     * @param evt 
+     */
+    private void bbuscarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bbuscarcitaMouseClicked
+    /**
+     * Evento al clickar foto "Cerrar Cita"
+     * @param evt 
+     */
+    private void bcerrarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcerrarcitaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bcerrarcitaMouseClicked
+    /**
+     * Evento al clickar foto "Historial Cliente"
+     * @param evt 
+     */
+    private void bhistorialclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bhistorialclienteMouseClicked
+    /**
+     * Evento al clickar foto "Usuarios"
+     * @param evt 
+     */
+    private void busuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_busuarioMouseClicked
+    /**
+     * Evento al clickar foto "Clientes"
+     * @param evt 
+     */
+    private void bclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bclienteMouseClicked
+    /**
+     * Evento al clickar foto "Facturas"
+     * @param evt 
+     */
+    private void bfacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bfacturaMouseClicked
 
     /**
      * @param args the command line arguments

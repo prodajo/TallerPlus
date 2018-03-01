@@ -231,6 +231,9 @@
             </Property>
             <Property name="alignmentY" type="float" value="0.0"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="busuarioMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="bcliente">
           <Properties>
@@ -238,6 +241,9 @@
               <Image iconType="3" name="/com/tallerplus/icon/007-chico.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bclienteMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="bfactura">
           <Properties>
@@ -245,6 +251,9 @@
               <Image iconType="3" name="/com/tallerplus/icon/recepcion.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bfacturaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -285,6 +294,9 @@
               <Image iconType="3" name="/com/tallerplus/icon/004-error.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bborrarcitaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="banadircita">
           <Properties>
@@ -302,6 +314,9 @@
               <Image iconType="3" name="/com/tallerplus/icon/historial.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bhistorialclienteMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="bbuscarcita">
           <Properties>
@@ -309,6 +324,9 @@
               <Image iconType="3" name="/com/tallerplus/icon/busqueda.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bbuscarcitaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="bcerrarcita">
           <Properties>
@@ -316,6 +334,9 @@
               <Image iconType="3" name="/com/tallerplus/icon/003-exito.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bcerrarcitaMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
