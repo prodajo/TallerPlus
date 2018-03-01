@@ -39,7 +39,6 @@ public class AnadirCita extends javax.swing.JFrame {
         indescripcion = new javax.swing.JTextField();
         inprecio = new javax.swing.JTextField();
         inmatricula = new javax.swing.JTextField();
-        inestado = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         labelfechahora = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -49,6 +48,7 @@ public class AnadirCita extends javax.swing.JFrame {
         bañadircita = new javax.swing.JLabel();
         bcancelarcita = new javax.swing.JLabel();
         batras = new javax.swing.JLabel();
+        comboestado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Añadir Cita");
@@ -89,12 +89,6 @@ public class AnadirCita extends javax.swing.JFrame {
         inmatricula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inmatriculaActionPerformed(evt);
-            }
-        });
-
-        inestado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inestadoActionPerformed(evt);
             }
         });
 
@@ -143,6 +137,8 @@ public class AnadirCita extends javax.swing.JFrame {
             }
         });
 
+        comboestado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "En proceso", "Finalizado", "Cerrado" }));
+
         javax.swing.GroupLayout panelacitaLayout = new javax.swing.GroupLayout(panelacita);
         panelacita.setLayout(panelacitaLayout);
         panelacitaLayout.setHorizontalGroup(
@@ -165,31 +161,31 @@ public class AnadirCita extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inestado, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelacitaLayout.createSequentialGroup()
                                 .addComponent(inprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(54, Short.MAX_VALUE))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE))
+                            .addGroup(panelacitaLayout.createSequentialGroup()
+                                .addComponent(comboestado, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelacitaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(batras)
-                        .addGap(30, 30, 30))))
+                        .addComponent(batras)))
+                .addGap(30, 30, 30))
             .addGroup(panelacitaLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
                 .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelacitaLayout.createSequentialGroup()
+                            .addComponent(labelfechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(infechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelacitaLayout.createSequentialGroup()
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(indescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelacitaLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelacitaLayout.createSequentialGroup()
-                                .addComponent(labelfechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(infechahora, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelacitaLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(indescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelacitaLayout.createSequentialGroup()
-                        .addGap(210, 210, 210)
                         .addComponent(bañadircita)
                         .addGap(18, 18, 18)
                         .addComponent(bcancelarcita)))
@@ -219,9 +215,10 @@ public class AnadirCita extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(inestado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                            .addComponent(jLabel6)
+                            .addComponent(comboestado, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                        .addGap(2, 2, 2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(panelacitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(indescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -261,10 +258,6 @@ public class AnadirCita extends javax.swing.JFrame {
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
-
-    private void inestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inestadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inestadoActionPerformed
 /**
  * Botón aceptar cita
  * @param evt 
@@ -275,7 +268,7 @@ public class AnadirCita extends javax.swing.JFrame {
         
         matricula=inmatricula.getText();
         fechahora=infechahora.getText();
-        estado=inestado.getText();
+        estado=(String)comboestado.getSelectedItem();
         precio=Integer.parseInt(inprecio.getText());
         descripcion=indescripcion.getText();
 
@@ -285,7 +278,6 @@ public class AnadirCita extends javax.swing.JFrame {
         
         inmatricula.setText("");
         infechahora.setText("DD/MM/AAAA HH:MM");
-        inestado.setText("");
         inprecio.setText("");
         indescripcion.setText("");
     }//GEN-LAST:event_bañadircitaMouseClicked
@@ -349,8 +341,8 @@ public class AnadirCita extends javax.swing.JFrame {
     private javax.swing.JLabel batras;
     private javax.swing.JLabel bañadircita;
     private javax.swing.JLabel bcancelarcita;
+    private javax.swing.JComboBox<String> comboestado;
     private javax.swing.JTextField indescripcion;
-    private javax.swing.JTextField inestado;
     private javax.swing.JTextField infechahora;
     private javax.swing.JTextField inmatricula;
     private javax.swing.JTextField inprecio;
