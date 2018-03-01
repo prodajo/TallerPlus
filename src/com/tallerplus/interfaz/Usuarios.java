@@ -82,14 +82,6 @@ public class Usuarios extends javax.swing.JFrame {
             }
         });
 
-        tablausuarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
         tablausuarios.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tablausuarios);
         tablausuarios.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -106,6 +98,11 @@ public class Usuarios extends javax.swing.JFrame {
         });
 
         beditarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/001-usuario-2.png"))); // NOI18N
+        beditarusuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                beditarusuarioMouseClicked(evt);
+            }
+        });
 
         banadirusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-usuario.png"))); // NOI18N
         banadirusuario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -231,14 +228,31 @@ public class Usuarios extends javax.swing.JFrame {
  */
     private void bborrarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseClicked
         int eliminar=tablausuarios.getSelectedRowCount();
-        tablausuarios.getSelectedRow();
         if(eliminar>=1){
-            tabla.removeRow(eliminar+1);
             GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar+1).getUsuario());
         }else{
-            JOptionPane.showMessageDialog(null,"No hay usuarios para eliminar.");
+            JOptionPane.showMessageDialog(null,"No hay usuarios para eliminar.","Error",0);
+        }
+        
+        //Después de eliminar usuario limpio la tabla y la vuelvo a mostrar.
+        int filas=tablausuarios.getRowCount();
+        
+        for(int i=0;i<filas;i++){
+            tabla.removeRow(0);
+        }
+        
+        for(Usuario elemento: Ficheros.usuarios){
+            String anadir[]=new String[3];
+            anadir[0]=elemento.getUsuario();
+            anadir[1]=elemento.getContrasena();
+            anadir[2]=elemento.getTipo();
+            tabla.addRow(anadir);
         }
     }//GEN-LAST:event_bborrarusuarioMouseClicked
+
+    private void beditarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseClicked
+        
+    }//GEN-LAST:event_beditarusuarioMouseClicked
 
     /**
      * @param args the command line arguments
