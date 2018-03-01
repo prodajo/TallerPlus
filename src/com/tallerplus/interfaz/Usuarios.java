@@ -227,31 +227,27 @@ public class Usuarios extends javax.swing.JFrame {
  * @param evt 
  */
     private void bborrarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseClicked
-        int eliminar=tablausuarios.getSelectedRowCount();
-        if(eliminar>=1){
-            GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar+1).getUsuario());
+        int eliminar=tablausuarios.getSelectedRow();
+        if(eliminar>=0){
+            boolean correcto=GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar).getUsuario());
+            if (correcto!=false)
+                tabla.removeRow(eliminar);
         }else{
             JOptionPane.showMessageDialog(null,"No hay usuarios para eliminar.","Error",0);
-        }
-        
-        //Después de eliminar usuario limpio la tabla y la vuelvo a mostrar.
-        int filas=tablausuarios.getRowCount();
-        
-        for(int i=0;i<filas;i++){
-            tabla.removeRow(0);
-        }
-        
-        for(Usuario elemento: Ficheros.usuarios){
-            String anadir[]=new String[3];
-            anadir[0]=elemento.getUsuario();
-            anadir[1]=elemento.getContrasena();
-            anadir[2]=elemento.getTipo();
-            tabla.addRow(anadir);
         }
     }//GEN-LAST:event_bborrarusuarioMouseClicked
 
     private void beditarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseClicked
-        
+        int editar=tablausuarios.getSelectedRow();
+        if(editar>=0){
+            inusuario.setText(tablausuarios.getValueAt(editar,0).toString());
+            incontrasena.setText(tablausuarios.getValueAt(editar,1).toString());
+            GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(editar).getUsuario());
+            tabla.removeRow(editar);
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Seleccione un usuario","Error",1);
+        }
     }//GEN-LAST:event_beditarusuarioMouseClicked
 
     /**

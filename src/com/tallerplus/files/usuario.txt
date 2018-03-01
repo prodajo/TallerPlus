@@ -1,3 +1,2 @@
 admin,admin,admin
-recepcion,recepcion,recepcion
-dani,dani2,mecanico
+mecanico,mecanico,mecanico

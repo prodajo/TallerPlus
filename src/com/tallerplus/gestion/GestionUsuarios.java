@@ -19,7 +19,8 @@ public class GestionUsuarios {
      * Borra un usuario al ArrayList que recibe y lo devuelve con el mismo borrado.
      * @param usuario Nombre del usuario que se desea borrar
      */
-    public static void borrarUsuario(String usuario){
+    public static boolean borrarUsuario(String usuario){
+        boolean bandera=true;
         if (!usuario.equals("admin")){
             boolean borrado=false;
             for(int i=0;i<Ficheros.usuarios.size();i++){
@@ -33,7 +34,10 @@ public class GestionUsuarios {
                 Ficheros.escribirFicheroUsuarios();
             else
                 System.out.println("No se han encontrado usuarios.");
-        }else
+        }else{
+            bandera=false;
             JOptionPane.showMessageDialog(null,"No puede borrar 'ADMIN'","Error", 0);
+        }
+        return bandera;
     }
 }
