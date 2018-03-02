@@ -53,7 +53,6 @@ public class AnadirCita extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Añadir Cita");
         setMinimumSize(new java.awt.Dimension(900, 500));
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setSize(new java.awt.Dimension(900, 500));
 
         panelacita.setBackground(new java.awt.Color(109, 132, 180));
