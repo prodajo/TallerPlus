@@ -85,18 +85,48 @@ public class GestionCitas {
         return citas;
     }
     /**
-     * consulta la cota de una determinada hora de un determinado dia
+     * consulta la cita de una determinada hora de un determinado dia
      * @param fechaHora dato de fecha y hora para realizar la consulta
-     * @param citas lista de citas
-     * @return citaConsultada la cita concreta que buscamos
+     * @return encontradas Lista de citas encontradas en esa fecha
      */
-    public static Cita consultarCita(String fechaHora,ArrayList<Cita>citas){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
+    public static ArrayList<Cita> consultarCitaFecha(String fechaHora){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
+        ArrayList<Cita> encontradas=new ArrayList();
+        boolean encontrado=false;
         Cita citaConsultada=new Cita();
-        for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getFechaHora().equals(fechaHora))
-                citaConsultada=citas.get(i);
+        for(int i=0;i<Ficheros.citas.size();i++){
+            if(Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){
+                citaConsultada=Ficheros.citas.get(i);
+                encontradas.add(citaConsultada);
+                encontrado=true;
+            }
         }
-        return citaConsultada;
+        
+        if(encontrado==false){
+            JOptionPane.showMessageDialog(null, "Cita no encontrada","Búsqueda",0);
+        }
+        return encontradas;
+    }
+    /**
+     * Consulta las citas con una matrícula determinada.
+     * @param matricula dato matrícula para realizar la búsqueda
+     * @return encontradas Lista de citas encontradas con esa matrícula
+     */
+    public static ArrayList<Cita> consultarCitaMatricula(String matricula){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
+        ArrayList<Cita> encontradas=new ArrayList();
+        boolean encontrado=false;
+        Cita citaConsultada=new Cita();
+        for(int i=0;i<Ficheros.citas.size();i++){
+            if(Ficheros.citas.get(i).getMatricula().equals(matricula)){
+                citaConsultada=Ficheros.citas.get(i);
+                encontradas.add(citaConsultada);
+                encontrado=true;
+            }
+        }
+        
+        if(encontrado==false){
+            JOptionPane.showMessageDialog(null, "Cita no encontrada","Búsqueda",0);
+        }
+        return encontradas;
     }
     /**
      * ver el historial de citas de un determinado vehiculo
