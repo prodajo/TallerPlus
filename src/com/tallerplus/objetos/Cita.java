@@ -1,5 +1,4 @@
 package com.tallerplus.objetos;
-import java.util.Date;
 // objeto para cada una de las citas que tiene un coche en el taller
 public class Cita {
     private String matricula;

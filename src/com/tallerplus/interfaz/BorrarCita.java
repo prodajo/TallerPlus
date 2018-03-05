@@ -5,12 +5,20 @@
  */
 package com.tallerplus.interfaz;
 
+import com.tallerplus.files.Ficheros;
+import com.tallerplus.gestion.GestionCitas;
+import com.tallerplus.gestion.GestionUsuarios;
+import com.tallerplus.objetos.Cita;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dani_
  */
 public class BorrarCita extends javax.swing.JFrame {
-
+DefaultTableModel tabla=new DefaultTableModel();
     /**
      * Creates new form BorrarCita
      */
@@ -19,6 +27,29 @@ public class BorrarCita extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Columnas de la tabla
+        tabla.addColumn("Matrícula");
+        tabla.addColumn("Fecha y hora");
+        tabla.addColumn("Descripción");
+        tabla.addColumn("Precio");
+        tabla.addColumn("Estado");
+
+        ArrayList<Cita> encontradas=new ArrayList();
+        
+        //Recibimos la citas encontradas
+        encontradas=Ficheros.citas;
+        
+        //Añadimos las citas encontadas a la tabla
+        for(Cita elemento: encontradas){
+            String anadir[]=new String [5];
+            anadir[0]=elemento.getMatricula();
+            anadir[1]=elemento.getFechaHora();
+            anadir[1]=elemento.getDescripcion();
+            anadir[3]=Float.toString(elemento.getPrecio());
+            anadir[4]=elemento.getEstado();
+            tabla.addRow(anadir);
+        }
+        this.tablabusqueda.setModel(tabla);
     }
 
     /**
@@ -32,11 +63,21 @@ public class BorrarCita extends javax.swing.JFrame {
 
         pbcita = new javax.swing.JPanel();
         batras = new javax.swing.JLabel();
+        titulousuarios = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        infecha = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        inmatricula = new javax.swing.JTextField();
+        titulousuarios1 = new javax.swing.JLabel();
+        bbuscar = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablabusqueda = new javax.swing.JTable();
+        titulousuarios2 = new javax.swing.JLabel();
+        bborrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Borrar Cita");
         setMinimumSize(new java.awt.Dimension(900, 500));
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
 
@@ -49,21 +90,123 @@ public class BorrarCita extends javax.swing.JFrame {
             }
         });
 
+        titulousuarios.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        titulousuarios.setForeground(new java.awt.Color(255, 255, 255));
+        titulousuarios.setText("Seleccione la cita que desee borrar");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Inserte matrícula");
+
+        infecha.setText("DD/MM/AAAA HH:MM");
+        infecha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                infechaFocusGained(evt);
+            }
+        });
+        infecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infechaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Inserte fecha");
+
+        inmatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inmatriculaActionPerformed(evt);
+            }
+        });
+
+        titulousuarios1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titulousuarios1.setForeground(new java.awt.Color(255, 255, 255));
+        titulousuarios1.setText("Borrar cita");
+
+        bbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bbuscarMouseClicked(evt);
+            }
+        });
+
+        tablabusqueda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Matrícula", "Fecha y hora", "Descripción", "Precio", "Estado"
+            }
+        ));
+        jScrollPane1.setViewportView(tablabusqueda);
+
+        titulousuarios2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        titulousuarios2.setForeground(new java.awt.Color(255, 255, 255));
+        titulousuarios2.setText("Buscar");
+
+        bborrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/error.png"))); // NOI18N
+        bborrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bborrarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout pbcitaLayout = new javax.swing.GroupLayout(pbcita);
         pbcita.setLayout(pbcitaLayout);
         pbcitaLayout.setHorizontalGroup(
             pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pbcitaLayout.createSequentialGroup()
-                .addContainerGap(802, Short.MAX_VALUE)
-                .addComponent(batras)
+                .addGap(34, 34, 34)
+                .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(titulousuarios2)
+                    .addComponent(titulousuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(bbuscar)
+                        .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titulousuarios)
+                    .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(batras, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bborrar, javax.swing.GroupLayout.Alignment.TRAILING)))
                 .addGap(34, 34, 34))
         );
         pbcitaLayout.setVerticalGroup(
             pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pbcitaLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(batras)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(batras)
+                    .addComponent(titulousuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pbcitaLayout.createSequentialGroup()
+                        .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(titulousuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(titulousuarios2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pbcitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pbcitaLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(bbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bborrar))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -80,10 +223,42 @@ public class BorrarCita extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
+        
+    }//GEN-LAST:event_inmatriculaActionPerformed
+
+    private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
+        
+    }//GEN-LAST:event_infechaActionPerformed
+
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
         VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
+
+    private void infechaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_infechaFocusGained
+        infecha.setText("");
+    }//GEN-LAST:event_infechaFocusGained
+
+    private void bbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarMouseClicked
+        String fecha,matricula;
+        
+        fecha=infecha.getText();
+        matricula=inmatricula.getText();
+        
+
+    }//GEN-LAST:event_bbuscarMouseClicked
+
+    private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
+        int eliminar=tablabusqueda.getSelectedRow();
+        
+        if(eliminar>=0){
+            boolean correcto=GestionCitas.borrarCita(Ficheros.citas.get(eliminar).getMatricula(),Ficheros.citas.get(eliminar).getFechaHora());
+            if (correcto!=false)
+                tabla.removeRow(eliminar);
+        }
+
+    }//GEN-LAST:event_bborrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -122,6 +297,17 @@ public class BorrarCita extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel batras;
+    private javax.swing.JLabel bborrar;
+    private javax.swing.JLabel bbuscar;
+    private javax.swing.JTextField infecha;
+    private javax.swing.JTextField inmatricula;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pbcita;
+    private javax.swing.JTable tablabusqueda;
+    private javax.swing.JLabel titulousuarios;
+    private javax.swing.JLabel titulousuarios1;
+    private javax.swing.JLabel titulousuarios2;
     // End of variables declaration//GEN-END:variables
 }

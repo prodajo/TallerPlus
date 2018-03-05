@@ -24,31 +24,34 @@ public class GestionCitas {
             }
             else;
         }
-        if(encontrado==false)
+        if(encontrado==false){
             Ficheros.citas.add(new Cita(matricula,fechaHora,descripcion,precio,estado));
+            Ficheros.escribirFicheroCitas();
+        }
     }
     /**
      * borra las citas de la lista de citas que tenemos 
      * @param matricula matricula del vehiculo que tiene la cita a eliminar
      * @param fechaHora momento de la cita
-     * @param citas lista de citas 
-     * @return citas con la cita en cuestion eliminada, siempre que fuera encontrada 
+
      */
-    public static ArrayList<Cita>borrarCita(String matricula,String fechaHora,ArrayList<Cita>citas){
+    public static  boolean borrarCita(String matricula,String fechaHora){
         boolean borrado=false; // indicador de borrado que solo cambia a true si se encuentra la cita en cuestion
-        for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula().equals(matricula) && citas.get(i).getFechaHora().equals(fechaHora)){
-                citas.remove(i);
+        for(int i=0;i<Ficheros.citas.size();i++){
+            if(Ficheros.citas.get(i).getMatricula().equals(matricula) && Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){
+                Ficheros.citas.remove(i);
                 borrado=true;
                 break;
             }
         }
         // implementar en graficos
-        if(borrado==true)
+        if(borrado==true){
             JOptionPane.showMessageDialog(null,"cita eliminada","gestión de citas",1);
+            Ficheros.escribirFicheroCitas();
+        }
         else JOptionPane.showMessageDialog(null,"cita no encontrada","gestión de citas",0);
-        return citas;
         
+        return borrado;
     }
     /**
      * modifica las citas ya creadas dentro de una lista de citas 
@@ -57,32 +60,31 @@ public class GestionCitas {
      * @param descripcion descripcion de la cita, modificada o no 
      * @param precio precio de la reparacion, introducida o no
      * @param estado estado de la reparacion, modificada o no
-     * @param citas lista de citas 
-     * @return citas con la cita ya modificada
      */
-    public static ArrayList<Cita>modificarCita(String matricula,String fechaHora,String descripcion,float precio,String estado,ArrayList<Cita>citas){ // no se pueden modificar los campo clave matricula y fecha, en caso de que esos datos esten mal hay que borrar la cita y generar una nueva
+    public static void modificarCita(String matricula,String fechaHora,String descripcion,float precio,String estado){ // no se pueden modificar los campo clave matricula y fecha, en caso de que esos datos esten mal hay que borrar la cita y generar una nueva
         boolean modificado=false;
-        for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula().equals(matricula) || citas.get(i).getFechaHora().equals(fechaHora))
-                if (!citas.get(i).getDescripcion().equals(descripcion)){
-                    citas.get(i).setDescripcion(descripcion);
+        for(int i=0;i<Ficheros.citas.size();i++){
+            if(Ficheros.citas.get(i).getMatricula().equals(matricula) || Ficheros.citas.get(i).getFechaHora().equals(fechaHora))
+                if (!Ficheros.citas.get(i).getDescripcion().equals(descripcion)){
+                    Ficheros.citas.get(i).setDescripcion(descripcion);
                     modificado=true;
                 }
-            if(citas.get(i).getPrecio()!=precio){
-                citas.get(i).setPrecio(precio);
+            if(Ficheros.citas.get(i).getPrecio()!=precio){
+                Ficheros.citas.get(i).setPrecio(precio);
                 modificado=true;
             }
-            if(!citas.get(i).getDescripcion().equals(descripcion)){
-                citas.get(i).setDescripcion(descripcion);
+            if(!Ficheros.citas.get(i).getDescripcion().equals(descripcion)){
+                Ficheros.citas.get(i).setDescripcion(descripcion);
                 modificado=true;
             }
             break;
         }
         
-        if (modificado==true)
+        if (modificado==true){
            JOptionPane.showMessageDialog(null,"cita modificada","modificación de citas",0);
+           Ficheros.escribirFicheroCitas();
+        }
         else JOptionPane.showMessageDialog(null,"cita no encontrada, no se ha podido modificar","modificación de citas",0);
-        return citas;
     }
     /**
      * consulta la cita de una determinada hora de un determinado dia
@@ -134,11 +136,11 @@ public class GestionCitas {
      * @param citas lista con el historial de citas 
      * @return citaCoche lista de todas las citas de ese determinado vehiculo
      */
-    public static ArrayList<Cita> verHistorial(String matricula,ArrayList<Cita>citas){ // ver historial de un determinado vehiculo
+    public static ArrayList<Cita> verHistorial(String matricula){ // ver historial de un determinado vehiculo
         ArrayList<Cita>citaCoche=new ArrayList<>();
-        for(int i=0;i<citas.size();i++){
-            if(citas.get(i).getMatricula().equals(matricula)){
-                citaCoche.add(citas.get(i));
+        for(int i=0;i<Ficheros.citas.size();i++){
+            if(Ficheros.citas.get(i).getMatricula().equals(matricula)){
+                citaCoche.add(Ficheros.citas.get(i));
             }
             
         }

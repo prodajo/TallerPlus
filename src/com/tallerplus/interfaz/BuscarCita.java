@@ -227,7 +227,6 @@ public class BuscarCita extends javax.swing.JFrame {
             anadir[1]=elemento.getDescripcion();
             anadir[3]=Float.toString(elemento.getPrecio());
             anadir[4]=elemento.getEstado();
-            System.out.println(anadir);
             tabla.addRow(anadir);
         }
         this.tablabusqueda.setModel(tabla);
