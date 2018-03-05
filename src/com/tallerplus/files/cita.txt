@@ -1,3 +1,4 @@
-1234,DD/MM/AAAA HH:MM,e23e32,12.0,null
-1223,DD/MM/AAAA HH:MM,eeeewq,22.0,Finalizado
-3333,03/04/2013 12:00,hola,33.0,Pendiente
+1234,12/12/2015,problema ruedas,21.0,Cerrado
+1111,12/07/2015,problema centralita,124.0,Cerrado
+4321,21/06/2011,Fallo ruedas,43.0,Cerrado
+RGJK,30/12/2017,Sin especificar,55.0,Cerrado

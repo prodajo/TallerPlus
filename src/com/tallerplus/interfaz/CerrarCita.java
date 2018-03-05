@@ -5,12 +5,22 @@
  */
 package com.tallerplus.interfaz;
 
+import com.tallerplus.files.Ficheros;
+import com.tallerplus.gestion.GestionCitas;
+import com.tallerplus.objetos.Cita;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
- *
+ * Interfaz para buscar y cerrar citas.
  * @author dani_
  */
 public class CerrarCita extends javax.swing.JFrame {
 
+    DefaultTableModel tabla = new DefaultTableModel();
+    ArrayList<Cita> encontradas = new ArrayList();
+    ArrayList<Cita> nocerradas = new ArrayList();
     /**
      * Creates new form CerrarCita
      */
@@ -19,6 +29,32 @@ public class CerrarCita extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Columnas de la tabla
+        tabla.addColumn("Matrícula");
+        tabla.addColumn("Fecha y hora");
+        tabla.addColumn("Descripción");
+        tabla.addColumn("Precio");
+        tabla.addColumn("Estado");
+
+        //Recibimos la citas encontradas
+        encontradas = Ficheros.citas;
+        //Desechamos las cerradas
+        for(int i=0;i<encontradas.size();i++){
+            if(!encontradas.get(i).getEstado().equals("Cerrado"))
+                nocerradas.add(encontradas.get(i));
+        }
+
+        //Añadimos las citas encontadas a la tabla
+        for (Cita elemento : nocerradas) {
+                String anadir[] = new String[5];
+                anadir[0] = elemento.getMatricula();
+                anadir[1] = elemento.getFechaHora();
+                anadir[1] = elemento.getDescripcion();
+                anadir[3] = Float.toString(elemento.getPrecio());
+                anadir[4] = elemento.getEstado();
+                tabla.addRow(anadir);
+        }
+        this.tablabusqueda.setModel(tabla);
     }
 
     /**
@@ -32,13 +68,22 @@ public class CerrarCita extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         batras = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        titulousuarios2 = new javax.swing.JLabel();
+        inmatricula = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        infecha = new javax.swing.JTextField();
+        bbuscar = new javax.swing.JLabel();
+        titulousuarios1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablabusqueda = new javax.swing.JTable();
+        bcerrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cerrar Cita");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(109, 132, 180));
         setMinimumSize(new java.awt.Dimension(900, 500));
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
 
@@ -51,21 +96,121 @@ public class CerrarCita extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Inserte matrícula");
+
+        titulousuarios2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        titulousuarios2.setForeground(new java.awt.Color(255, 255, 255));
+        titulousuarios2.setText("Buscar");
+
+        inmatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inmatriculaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Inserte fecha");
+
+        infecha.setText("DD/MM/AAAA HH:MM");
+        infecha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                infechaFocusGained(evt);
+            }
+        });
+        infecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                infechaActionPerformed(evt);
+            }
+        });
+
+        bbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bbuscarMouseClicked(evt);
+            }
+        });
+
+        titulousuarios1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titulousuarios1.setForeground(new java.awt.Color(255, 255, 255));
+        titulousuarios1.setText("Cerrar Cita");
+
+        tablabusqueda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablabusqueda);
+
+        bcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/exito-p.png"))); // NOI18N
+        bcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bcerrarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(790, Short.MAX_VALUE)
-                .addComponent(batras)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(titulousuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(batras))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(titulousuarios2)
+                                .addGap(142, 142, 142))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(bbuscar)
+                                .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bcerrar, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(batras)
-                .addContainerGap(394, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(batras)
+                    .addComponent(titulousuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(titulousuarios2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(infecha, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(bbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bcerrar))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,9 +228,96 @@ public class CerrarCita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
+
+    private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
+
+    }//GEN-LAST:event_inmatriculaActionPerformed
+
+    private void infechaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_infechaFocusGained
+        infecha.setText("");
+    }//GEN-LAST:event_infechaFocusGained
+
+    private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
+
+    }//GEN-LAST:event_infechaActionPerformed
+/**
+ * Botón buscar citas
+ * @param evt 
+ */
+    private void bbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarMouseClicked
+        String fecha, matricula;
+        fecha = infecha.getText();
+        matricula = inmatricula.getText();
+
+        //Comprobamos que estén todos los campos introducidos.
+        if (!fecha.equals("DD/MM/AAAA HH:MM") && !fecha.equals("") && !matricula.equals("")) {
+
+            //Recibimos la citas encontradas
+            nocerradas = GestionCitas.consultarCitas(matricula, fecha);
+            //Si hay citas encontradas refrescamos la tabla
+            if (nocerradas.size() > 0) {
+                //Borramos contanido anterior de la tabla
+                for (int i = 0; i < tabla.getRowCount(); i++) {
+                    tabla.removeRow(i);
+                    i -= 1;
+                }
+
+                //Añadimos las citas encontadas a la tabla
+                for (Cita elemento : nocerradas) {
+                    if (!elemento.getEstado().equalsIgnoreCase("Cerrado")) {
+                        String anadir[] = new String[5];
+                        anadir[0] = elemento.getMatricula();
+                        anadir[1] = elemento.getFechaHora();
+                        anadir[1] = elemento.getDescripcion();
+                        anadir[3] = Float.toString(elemento.getPrecio());
+                        anadir[4] = elemento.getEstado();
+                        tabla.addRow(anadir);
+                    }
+                }
+                this.tablabusqueda.setModel(tabla);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Inserte todos los campos", "Búsqueda", 0);
+        }
+    }//GEN-LAST:event_bbuscarMouseClicked
+/**
+ * Botón de cerrar la cita.
+ * @param evt 
+ */
+    private void bcerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcerrarMouseClicked
+        int seleccionado = tablabusqueda.getSelectedRow();
+        if (seleccionado >= 0) {
+            String matricula=nocerradas.get(seleccionado).getMatricula();
+            String fechahora=nocerradas.get(seleccionado).getFechaHora();
+            GestionCitas.cerrarCita(matricula,fechahora);
+        }
+
+        //Borramos contanido anterior de la tabla
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+            i -= 1;
+        }
+
+        //Recibimos la citas encontradas
+        encontradas = Ficheros.citas;
+
+        //Añadimos las citas encontadas a la tabla
+        for (Cita elemento : encontradas) {
+            if (!elemento.getEstado().equals("Cerrado")) {
+                String anadir[] = new String[5];
+                anadir[0] = elemento.getMatricula();
+                anadir[1] = elemento.getFechaHora();
+                anadir[1] = elemento.getDescripcion();
+                anadir[3] = Float.toString(elemento.getPrecio());
+                anadir[4] = elemento.getEstado();
+                tabla.addRow(anadir);
+            }
+        }
+        this.tablabusqueda.setModel(tabla);
+    }//GEN-LAST:event_bcerrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -124,6 +356,16 @@ public class CerrarCita extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel batras;
+    private javax.swing.JLabel bbuscar;
+    private javax.swing.JLabel bcerrar;
+    private javax.swing.JTextField infecha;
+    private javax.swing.JTextField inmatricula;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablabusqueda;
+    private javax.swing.JLabel titulousuarios1;
+    private javax.swing.JLabel titulousuarios2;
     // End of variables declaration//GEN-END:variables
 }

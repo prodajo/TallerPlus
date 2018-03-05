@@ -264,6 +264,7 @@ public class BorrarCita extends javax.swing.JFrame {
 
             //Recibimos la citas encontradas
             encontradas = GestionCitas.consultarCitas(matricula, fecha);
+            //Si hay citas encontradas refrescamos la tabla
             if (encontradas.size() > 0) {
                 //Borramos contanido anterior de la tabla
                 for (int i = 0; i < tabla.getRowCount(); i++) {
