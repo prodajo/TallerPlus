@@ -131,9 +131,31 @@ public class GestionCitas {
         return encontradas;
     }
     /**
+     * Consulta las citas con las que coincidan la fecha y la hora.
+     * @param matricula dato matrícula para realizar la búsqueda
+     * @param fechahora dato con la fecha y la hora para realizar la búsqueda.
+     * @return encontradas Lista de citas encontradas con esa matrícula
+     */
+    public static ArrayList<Cita> consultarCitas(String matricula,String fechahora){ // podemos consultar una cita segun su hora, si no se sabe la hora de una cita de una determinada matricula se debe usar el historial del vehiculo
+        ArrayList<Cita> encontradas=new ArrayList();
+        boolean encontrado=false;
+        Cita citaConsultada=new Cita();
+        for(int i=0;i<Ficheros.citas.size();i++){
+            if(Ficheros.citas.get(i).getMatricula().equals(matricula) && Ficheros.citas.get(i).getFechaHora().equals(fechahora)){
+                citaConsultada=Ficheros.citas.get(i);
+                encontradas.add(citaConsultada);
+                encontrado=true;
+            }
+        }
+        
+        if(encontrado==false){
+            JOptionPane.showMessageDialog(null, "Cita no encontrada","Búsqueda",0);
+        }
+        return encontradas;
+    }
+    /**
      * ver el historial de citas de un determinado vehiculo
      * @param matricula matricula del vehiculo que queremos sacar su historial
-     * @param citas lista con el historial de citas 
      * @return citaCoche lista de todas las citas de ese determinado vehiculo
      */
     public static ArrayList<Cita> verHistorial(String matricula){ // ver historial de un determinado vehiculo

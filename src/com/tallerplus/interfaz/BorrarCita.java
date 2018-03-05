@@ -7,7 +7,6 @@ package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
-import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,7 +17,9 @@ import javax.swing.table.DefaultTableModel;
  * @author dani_
  */
 public class BorrarCita extends javax.swing.JFrame {
-DefaultTableModel tabla=new DefaultTableModel();
+
+    DefaultTableModel tabla = new DefaultTableModel();
+
     /**
      * Creates new form BorrarCita
      */
@@ -34,19 +35,19 @@ DefaultTableModel tabla=new DefaultTableModel();
         tabla.addColumn("Precio");
         tabla.addColumn("Estado");
 
-        ArrayList<Cita> encontradas=new ArrayList();
-        
+        ArrayList<Cita> encontradas = new ArrayList();
+
         //Recibimos la citas encontradas
-        encontradas=Ficheros.citas;
-        
+        encontradas = Ficheros.citas;
+
         //Añadimos las citas encontadas a la tabla
-        for(Cita elemento: encontradas){
-            String anadir[]=new String [5];
-            anadir[0]=elemento.getMatricula();
-            anadir[1]=elemento.getFechaHora();
-            anadir[1]=elemento.getDescripcion();
-            anadir[3]=Float.toString(elemento.getPrecio());
-            anadir[4]=elemento.getEstado();
+        for (Cita elemento : encontradas) {
+            String anadir[] = new String[5];
+            anadir[0] = elemento.getMatricula();
+            anadir[1] = elemento.getFechaHora();
+            anadir[1] = elemento.getDescripcion();
+            anadir[3] = Float.toString(elemento.getPrecio());
+            anadir[4] = elemento.getEstado();
             tabla.addRow(anadir);
         }
         this.tablabusqueda.setModel(tabla);
@@ -224,38 +225,82 @@ DefaultTableModel tabla=new DefaultTableModel();
     }// </editor-fold>//GEN-END:initComponents
 
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
-        
+
     }//GEN-LAST:event_inmatriculaActionPerformed
 
     private void infechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_infechaActionPerformed
-        
-    }//GEN-LAST:event_infechaActionPerformed
 
+    }//GEN-LAST:event_infechaActionPerformed
+    /**
+     * Botón ir a la pantalla principal
+     *
+     * @param evt
+     */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
-
+    /**
+     * Pone el texto de introducir fecha en blanco al hacer click sobre el.
+     *
+     * @param evt
+     */
     private void infechaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_infechaFocusGained
         infecha.setText("");
     }//GEN-LAST:event_infechaFocusGained
-
+    /**
+     * Botón para buscar por fecha y matrícula.
+     *
+     * @param evt
+     */
     private void bbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarMouseClicked
-        String fecha,matricula;
-        
-        fecha=infecha.getText();
-        matricula=inmatricula.getText();
-        
+        String fecha, matricula;
+        fecha = infecha.getText();
+        matricula = inmatricula.getText();
+
+        //Comprobamos que estén todos los campos introducidos.
+        if (!fecha.equals("DD/MM/AAAA HH:MM") && !fecha.equals("") && !matricula.equals("")) {
+            ArrayList<Cita> encontradas = new ArrayList();
+
+            //Recibimos la citas encontradas
+            encontradas = GestionCitas.consultarCitas(matricula, fecha);
+            if (encontradas.size() > 0) {
+                //Borramos contanido anterior de la tabla
+                for (int i = 0; i < tabla.getRowCount(); i++) {
+                    tabla.removeRow(i);
+                    i -= 1;
+                }
+
+                //Añadimos las citas encontadas a la tabla
+                for (Cita elemento : encontradas) {
+                    String anadir[] = new String[5];
+                    anadir[0] = elemento.getMatricula();
+                    anadir[1] = elemento.getFechaHora();
+                    anadir[1] = elemento.getDescripcion();
+                    anadir[3] = Float.toString(elemento.getPrecio());
+                    anadir[4] = elemento.getEstado();
+                    tabla.addRow(anadir);
+                }
+                this.tablabusqueda.setModel(tabla);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Inserte todos los campos", "Búsqueda", 0);
+        }
 
     }//GEN-LAST:event_bbuscarMouseClicked
-
+    /**
+     * Botón de borrar cita.
+     *
+     * @param evt
+     */
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
-        int eliminar=tablabusqueda.getSelectedRow();
-        
-        if(eliminar>=0){
-            boolean correcto=GestionCitas.borrarCita(Ficheros.citas.get(eliminar).getMatricula(),Ficheros.citas.get(eliminar).getFechaHora());
-            if (correcto!=false)
+        int eliminar = tablabusqueda.getSelectedRow();
+
+        if (eliminar >= 0) {
+            boolean correcto = GestionCitas.borrarCita(Ficheros.citas.get(eliminar).getMatricula(), Ficheros.citas.get(eliminar).getFechaHora());
+            if (correcto != false) {
                 tabla.removeRow(eliminar);
+            }
         }
 
     }//GEN-LAST:event_bborrarMouseClicked
