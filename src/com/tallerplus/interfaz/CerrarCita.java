@@ -49,7 +49,7 @@ public class CerrarCita extends javax.swing.JFrame {
                 String anadir[] = new String[5];
                 anadir[0] = elemento.getMatricula();
                 anadir[1] = elemento.getFechaHora();
-                anadir[1] = elemento.getDescripcion();
+                anadir[2] = elemento.getDescripcion();
                 anadir[3] = Float.toString(elemento.getPrecio());
                 anadir[4] = elemento.getEstado();
                 tabla.addRow(anadir);
@@ -277,11 +277,12 @@ public class CerrarCita extends javax.swing.JFrame {
                         String anadir[] = new String[5];
                         anadir[0] = elemento.getMatricula();
                         anadir[1] = elemento.getFechaHora();
-                        anadir[1] = elemento.getDescripcion();
+                        anadir[2] = elemento.getDescripcion();
                         anadir[3] = Float.toString(elemento.getPrecio());
                         anadir[4] = elemento.getEstado();
                         tabla.addRow(anadir);
-                    }
+                    } else
+                        JOptionPane.showMessageDialog(null,"No hay ninguna cita abierta con esos datos","Cerrar cita",1 );
                 }
                 this.tablabusqueda.setModel(tabla);
             }
@@ -316,7 +317,7 @@ public class CerrarCita extends javax.swing.JFrame {
                 String anadir[] = new String[5];
                 anadir[0] = elemento.getMatricula();
                 anadir[1] = elemento.getFechaHora();
-                anadir[1] = elemento.getDescripcion();
+                anadir[2] = elemento.getDescripcion();
                 anadir[3] = Float.toString(elemento.getPrecio());
                 anadir[4] = elemento.getEstado();
                 tabla.addRow(anadir);

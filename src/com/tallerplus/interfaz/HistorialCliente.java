@@ -5,12 +5,17 @@
  */
 package com.tallerplus.interfaz;
 
+import com.tallerplus.gestion.GestionCitas;
+import com.tallerplus.objetos.Cita;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dani_
  */
 public class HistorialCliente extends javax.swing.JFrame {
-
+    DefaultTableModel tabla=new DefaultTableModel();
     /**
      * Creates new form HistorialCliente
      */
@@ -19,6 +24,12 @@ public class HistorialCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        //Columnas de la tabla
+        tabla.addColumn("Matrícula");
+        tabla.addColumn("Fecha y hora");
+        tabla.addColumn("Descripción");
+        tabla.addColumn("Precio");
+        tabla.addColumn("Estado");
     }
 
     /**
@@ -30,60 +41,165 @@ public class HistorialCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        batras = new javax.swing.JLabel();
+        pbucita = new javax.swing.JPanel();
+        batras1 = new javax.swing.JLabel();
+        titulousuarios = new javax.swing.JLabel();
+        inmatricula = new javax.swing.JTextField();
+        bbuscarmatricula = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablabusqueda = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Historial Cliente");
         setMinimumSize(new java.awt.Dimension(900, 500));
-        setPreferredSize(new java.awt.Dimension(900, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 500));
 
-        jPanel1.setBackground(new java.awt.Color(109, 132, 180));
+        pbucita.setBackground(new java.awt.Color(109, 132, 180));
 
-        batras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
-        batras.addMouseListener(new java.awt.event.MouseAdapter() {
+        batras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/flecha-hacia-la-izquierda.png"))); // NOI18N
+        batras1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                batrasMouseClicked(evt);
+                batras1MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(793, Short.MAX_VALUE)
-                .addComponent(batras)
-                .addGap(43, 43, 43))
+        titulousuarios.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        titulousuarios.setForeground(new java.awt.Color(255, 255, 255));
+        titulousuarios.setText("Historial Cliente");
+
+        inmatricula.setText("Matrícula");
+        inmatricula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inmatriculaFocusGained(evt);
+            }
+        });
+        inmatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inmatriculaActionPerformed(evt);
+            }
+        });
+
+        bbuscarmatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda-p.png"))); // NOI18N
+        bbuscarmatricula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bbuscarmatriculaMouseClicked(evt);
+            }
+        });
+
+        tablabusqueda.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Matrícula", "Fecha y hora", "Descripcion", "Precio", "Estado"
+            }
+        ));
+        jScrollPane2.setViewportView(tablabusqueda);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/007-chico.png"))); // NOI18N
+
+        javax.swing.GroupLayout pbucitaLayout = new javax.swing.GroupLayout(pbucita);
+        pbucita.setLayout(pbucitaLayout);
+        pbucitaLayout.setHorizontalGroup(
+            pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pbucitaLayout.createSequentialGroup()
+                .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pbucitaLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(titulousuarios))
+                    .addGroup(pbucitaLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bbuscarmatricula)
+                            .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pbucitaLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(batras1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(batras)
-                .addContainerGap(386, Short.MAX_VALUE))
+        pbucitaLayout.setVerticalGroup(
+            pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pbucitaLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(titulousuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(batras1))
+                .addGroup(pbucitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pbucitaLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(inmatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bbuscarmatricula)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pbucitaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pbucita, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pbucita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
+    private void batras1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batras1MouseClicked
         VentanaPrincipal venanaprincipal=new VentanaPrincipal();
         dispose();
-    }//GEN-LAST:event_batrasMouseClicked
+    }//GEN-LAST:event_batras1MouseClicked
+
+    private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inmatriculaActionPerformed
+
+    private void bbuscarmatriculaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarmatriculaMouseClicked
+        ArrayList<Cita> encontradas=new ArrayList();
+        String matricula=inmatricula.getText();
+
+        //Recibimos la citas encontradas
+        encontradas=GestionCitas.consultarCitaMatricula(matricula);
+
+        //Borramos contenido anterior de la tabla
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            tabla.removeRow(i);
+            i-=1;
+        }
+
+        //Añadimos las citas encontadas a la tabla
+        for(Cita elemento: encontradas){
+            String anadir[]=new String [5];
+            anadir[0]=elemento.getMatricula();
+            anadir[1]=elemento.getFechaHora();
+            anadir[2]=elemento.getDescripcion();
+            anadir[3]=Float.toString(elemento.getPrecio());
+            anadir[4]=elemento.getEstado();
+            tabla.addRow(anadir);
+        }
+        this.tablabusqueda.setModel(tabla);
+    }//GEN-LAST:event_bbuscarmatriculaMouseClicked
+
+    private void inmatriculaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inmatriculaFocusGained
+        inmatricula.setText("");
+    }//GEN-LAST:event_inmatriculaFocusGained
 
     /**
      * @param args the command line arguments
@@ -121,7 +237,13 @@ public class HistorialCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel batras;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel batras1;
+    private javax.swing.JLabel bbuscarmatricula;
+    private javax.swing.JTextField inmatricula;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel pbucita;
+    private javax.swing.JTable tablabusqueda;
+    private javax.swing.JLabel titulousuarios;
     // End of variables declaration//GEN-END:variables
 }

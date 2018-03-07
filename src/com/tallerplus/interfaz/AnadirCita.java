@@ -7,6 +7,8 @@ package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionCitas;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dani_
@@ -21,7 +23,7 @@ public class AnadirCita extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-        
+
     }
 
     /**
@@ -257,43 +259,51 @@ public class AnadirCita extends javax.swing.JFrame {
     private void inmatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inmatriculaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inmatriculaActionPerformed
-/**
- * Botón aceptar cita
- * @param evt 
- */
+    /**
+     * Botón aceptar cita
+     *
+     * @param evt
+     */
     private void bañadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadircitaMouseClicked
-        String matricula,fechahora,estado,descripcion;
-        float precio=0f;
-        
-        matricula=inmatricula.getText();
-        fechahora=infechahora.getText();
-        estado=(String)comboestado.getSelectedItem();
-        precio=Integer.parseInt(inprecio.getText());
-        descripcion=indescripcion.getText();
+        String matricula, fechahora, estado, descripcion;
+        float precio = 0f;
 
-        GestionCitas.anadirCita(matricula, fechahora, descripcion, precio, estado);
-            
-        Ficheros.escribirFicheroCitas();
-        
-        inmatricula.setText("");
-        infechahora.setText("DD/MM/AAAA HH:MM");
-        inprecio.setText("");
-        indescripcion.setText("");
+        try {
+            matricula = inmatricula.getText();
+            fechahora = infechahora.getText();
+            estado = (String) comboestado.getSelectedItem();
+            precio = Float.parseFloat(inprecio.getText());
+            descripcion = indescripcion.getText();
+
+            GestionCitas.anadirCita(matricula, fechahora, descripcion, precio, estado);
+
+            Ficheros.escribirFicheroCitas();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Valor de precio erróneo", "Error", 0);
+        } finally {
+            inmatricula.setText("");
+            infechahora.setText("DD/MM/AAAA HH:MM");
+            inprecio.setText("");
+            indescripcion.setText("");
+        }
     }//GEN-LAST:event_bañadircitaMouseClicked
-/**
- * Botón cancelar operación insertar cita
- * @param evt 
- */
+    /**
+     * Botón cancelar operación insertar cita
+     *
+     * @param evt
+     */
     private void bcancelarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcancelarcitaMouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_bcancelarcitaMouseClicked
-/**
- * Botón volver atrás
- * @param evt 
- */
+    /**
+     * Botón volver atrás
+     *
+     * @param evt
+     */
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
 

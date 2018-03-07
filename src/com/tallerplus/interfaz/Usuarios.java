@@ -16,8 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author dani_
  */
 public class Usuarios extends javax.swing.JFrame {
-    DefaultTableModel tabla=new DefaultTableModel();
-    
+
+    DefaultTableModel tabla = new DefaultTableModel();
+
     /**
      * Creates new form Usuarios
      */
@@ -26,20 +27,20 @@ public class Usuarios extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-        
+
         //Columnas de la tabla
         tabla.addColumn("Usuario");
         tabla.addColumn("Contraseña");
         tabla.addColumn("Tipo");
         //Filas de la tabla
-        for(Usuario elemento: Ficheros.usuarios){
-            String anadir[]=new String[3];
-            anadir[0]=elemento.getUsuario();
-            anadir[1]=elemento.getContrasena();
-            anadir[2]=elemento.getTipo();
+        for (Usuario elemento : Ficheros.usuarios) {
+            String anadir[] = new String[3];
+            anadir[0] = elemento.getUsuario();
+            anadir[1] = elemento.getContrasena();
+            anadir[2] = elemento.getTipo();
             tabla.addRow(anadir);
         }
-            
+
         this.tablausuarios.setModel(tabla);
     }
 
@@ -205,49 +206,56 @@ public class Usuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void batrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batrasMouseClicked
-        VentanaPrincipal venanaprincipal=new VentanaPrincipal();
+        VentanaPrincipal venanaprincipal = new VentanaPrincipal();
         dispose();
     }//GEN-LAST:event_batrasMouseClicked
-/**
- * Botón añadir usuario.
- * @param evt 
- */
+    /**
+     * Botón añadir usuario.
+     *
+     * @param evt
+     */
     private void banadirusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadirusuarioMouseClicked
-        String anadir[]=new String[3];
-        anadir[0]=inusuario.getText();
-        anadir[1]=incontrasena.getText();
-        anadir[2]=(String)combotipo.getSelectedItem();
-        tabla.addRow(anadir);
-        GestionUsuarios.anadirUsuario(anadir[0], anadir[1], anadir[2]);
+        String anadir[] = new String[3];
+        anadir[0] = inusuario.getText();
+        anadir[1] = incontrasena.getText();
+        anadir[2] = (String) combotipo.getSelectedItem();
+        boolean repetido = GestionUsuarios.anadirUsuario(anadir[0], anadir[1], anadir[2]);
+        if (repetido == false) {
+            tabla.addRow(anadir);
+        }
+
         inusuario.setText("");
         incontrasena.setText("");
     }//GEN-LAST:event_banadirusuarioMouseClicked
-/**
- * Botón para eliminar un usuario.
- * @param evt 
- */
+    /**
+     * Botón para eliminar un usuario.
+     *
+     * @param evt
+     */
     private void bborrarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarusuarioMouseClicked
-        int eliminar=tablausuarios.getSelectedRow();
-        if(eliminar>=0){
-            boolean correcto=GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar).getUsuario());
-            if (correcto!=false)
+        int eliminar = tablausuarios.getSelectedRow();
+        if (eliminar >= 0) {
+            boolean correcto = GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(eliminar).getUsuario());
+            if (correcto != false) {
                 tabla.removeRow(eliminar);
-        }else{
-            JOptionPane.showMessageDialog(null,"No hay usuarios para eliminar.","Error",0);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay usuarios para eliminar.", "Error", 0);
         }
     }//GEN-LAST:event_bborrarusuarioMouseClicked
 
     private void beditarusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_beditarusuarioMouseClicked
-        int editar=tablausuarios.getSelectedRow();
-        if(editar>=0){
-            inusuario.setText(tablausuarios.getValueAt(editar,0).toString());
-            incontrasena.setText(tablausuarios.getValueAt(editar,1).toString());
-            boolean correcto=GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(editar).getUsuario());
-            if(correcto!=false)
+        int editar = tablausuarios.getSelectedRow();
+        if (editar >= 0) {
+            inusuario.setText(tablausuarios.getValueAt(editar, 0).toString());
+            incontrasena.setText(tablausuarios.getValueAt(editar, 1).toString());
+            boolean correcto = GestionUsuarios.borrarUsuario(Ficheros.usuarios.get(editar).getUsuario());
+            if (correcto != false) {
                 tabla.removeRow(editar);
-            
-        }else{
-            JOptionPane.showMessageDialog(null,"Seleccione un usuario","Error",1);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un usuario", "Error", 1);
         }
     }//GEN-LAST:event_beditarusuarioMouseClicked
 

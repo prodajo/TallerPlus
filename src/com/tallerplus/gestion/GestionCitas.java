@@ -4,6 +4,7 @@ import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_OPTION;
 
 public class GestionCitas {
     /**
@@ -36,20 +37,24 @@ public class GestionCitas {
 
      */
     public static  boolean borrarCita(String matricula,String fechaHora){
+        int confirmado=0;
         boolean borrado=false; // indicador de borrado que solo cambia a true si se encuentra la cita en cuestion
         for(int i=0;i<Ficheros.citas.size();i++){
             if(Ficheros.citas.get(i).getMatricula().equals(matricula) && Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){
-                Ficheros.citas.remove(i);
-                borrado=true;
+                confirmado=JOptionPane.showConfirmDialog(null,"¿Seguro que deseas borrar esta cita?");
+                if (confirmado==YES_OPTION){
+                    Ficheros.citas.remove(i);
+                    borrado=true;
+                }
                 break;
             }
         }
         // implementar en graficos
-        if(borrado==true){
-            JOptionPane.showMessageDialog(null,"cita eliminada","gestión de citas",1);
+        if(borrado==true && confirmado==YES_OPTION){
             Ficheros.escribirFicheroCitas();
-        }
-        else JOptionPane.showMessageDialog(null,"cita no encontrada","gestión de citas",0);
+        }else if(confirmado!=YES_OPTION);
+        else 
+            JOptionPane.showMessageDialog(null,"cita no encontrada","gestión de citas",0);
         
         return borrado;
     }

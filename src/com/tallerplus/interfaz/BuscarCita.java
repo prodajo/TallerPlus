@@ -224,7 +224,7 @@ public class BuscarCita extends javax.swing.JFrame {
             String anadir[]=new String [5];
             anadir[0]=elemento.getMatricula();
             anadir[1]=elemento.getFechaHora();
-            anadir[1]=elemento.getDescripcion();
+            anadir[2]=elemento.getDescripcion();
             anadir[3]=Float.toString(elemento.getPrecio());
             anadir[4]=elemento.getEstado();
             tabla.addRow(anadir);
@@ -253,7 +253,7 @@ public class BuscarCita extends javax.swing.JFrame {
             String anadir[]=new String [5];
             anadir[0]=elemento.getMatricula();
             anadir[1]=elemento.getFechaHora();
-            anadir[1]=elemento.getDescripcion();
+            anadir[2]=elemento.getDescripcion();
             anadir[3]=Float.toString(elemento.getPrecio());
             anadir[4]=elemento.getEstado();
             tabla.addRow(anadir);

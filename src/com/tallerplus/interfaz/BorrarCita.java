@@ -45,7 +45,7 @@ public class BorrarCita extends javax.swing.JFrame {
             String anadir[] = new String[5];
             anadir[0] = elemento.getMatricula();
             anadir[1] = elemento.getFechaHora();
-            anadir[1] = elemento.getDescripcion();
+            anadir[2] = elemento.getDescripcion();
             anadir[3] = Float.toString(elemento.getPrecio());
             anadir[4] = elemento.getEstado();
             tabla.addRow(anadir);
@@ -277,7 +277,7 @@ public class BorrarCita extends javax.swing.JFrame {
                     String anadir[] = new String[5];
                     anadir[0] = elemento.getMatricula();
                     anadir[1] = elemento.getFechaHora();
-                    anadir[1] = elemento.getDescripcion();
+                    anadir[2] = elemento.getDescripcion();
                     anadir[3] = Float.toString(elemento.getPrecio());
                     anadir[4] = elemento.getEstado();
                     tabla.addRow(anadir);
@@ -296,11 +296,10 @@ public class BorrarCita extends javax.swing.JFrame {
      */
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
         int eliminar = tablabusqueda.getSelectedRow();
-
         if (eliminar >= 0) {
             boolean correcto = GestionCitas.borrarCita(Ficheros.citas.get(eliminar).getMatricula(), Ficheros.citas.get(eliminar).getFechaHora());
             if (correcto != false) {
-                tabla.removeRow(eliminar);
+                    tabla.removeRow(eliminar);
             }
         }
 
