@@ -5,12 +5,20 @@
  */
 package com.tallerplus.interfaz;
 
+import com.tallerplus.files.Ficheros;
+import com.tallerplus.gestion.GestionClientes;
+import com.tallerplus.gestion.GestionUsuarios;
+import com.tallerplus.objetos.Coche;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dani_
  */
 public class Clientes extends javax.swing.JFrame {
-
+DefaultTableModel tablaCliente=new DefaultTableModel();
     /**
      * Creates new form Clientes
      */
@@ -19,7 +27,33 @@ public class Clientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        tablaCliente.addColumn("Matrícula");
+        tablaCliente.addColumn("Motor");
+        tablaCliente.addColumn("cilindrada");
+        tablaCliente.addColumn("caballos");
+        tablaCliente.addColumn("nombre");
+        tablaCliente.addColumn("DNI");
+        tablaCliente.addColumn("telefono");
+        
+        ArrayList<Coche>cochesClientes=new ArrayList();
+        cochesClientes=Ficheros.coches;
+        
+        // añadimos los coches a la tabla
+         //Añadimos las citas encontadas a la tabla
+        for (Coche elemento : cochesClientes) {
+            String anadir[] = new String[7];
+            anadir[0] = elemento.getMatricula();
+            anadir[1] = elemento.getMotor();
+            anadir[2] = elemento.getCilindrada();
+            anadir[3] = elemento.getCaballos();
+            anadir[4] = elemento.getNombreDueño();
+            anadir[5] = elemento.getTelefono();
+            anadir[6] = elemento.getDni();
+            tablaCliente.addRow(anadir);
+        }
+        this.tablaClientes.setModel(tablaCliente);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,24 +69,24 @@ public class Clientes extends javax.swing.JFrame {
         batras1 = new javax.swing.JLabel();
         titulousuarios = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        textoCaballos = new javax.swing.JTextField();
+        textoMatricula = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        textoNombre = new javax.swing.JTextField();
+        textoCilindrada = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        textoTelefono = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        textoDni = new javax.swing.JTextField();
+        botonAnadirCliente = new javax.swing.JLabel();
+        botonEditarCliente = new javax.swing.JLabel();
+        botonEliminarCliente = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablausuarios = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
+        textoMotor = new javax.swing.JComboBox<>();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,29 +139,44 @@ public class Clientes extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("telefono");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-usuario.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonAnadirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-usuario.png"))); // NOI18N
+        botonAnadirCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                botonAnadirClienteMouseClicked(evt);
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/001-usuario-2.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/001-usuario-2.png"))); // NOI18N
+        botonEditarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                botonEditarClienteMouseClicked(evt);
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/002-usuario-1.png"))); // NOI18N
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonEliminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/002-usuario-1.png"))); // NOI18N
+        botonEliminarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                botonEliminarClienteMouseClicked(evt);
             }
         });
 
-        tablausuarios.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(tablausuarios);
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Matricula", "Motor ", "Cilindrada", "Caballos", "Nombre", "DNI", "Telefono"
+            }
+        ));
+        tablaClientes.setToolTipText("");
+        tablaClientes.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tablaClientes);
+        tablaClientes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+        textoMotor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diesel", "Gasolina", "Hibrido", "Electrico" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,29 +190,29 @@ public class Clientes extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoCaballos, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textoMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel4)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(textoCilindrada, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                                    .addComponent(textoMotor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(46, 46, 46)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel8)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textoDni, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(botonAnadirCliente)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel1)
+                                .addComponent(botonEditarCliente)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel11)))))
+                                .addComponent(botonEliminarCliente)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(batras1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -183,33 +232,33 @@ public class Clientes extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textoDni, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(textoMotor))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textoCilindrada, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textoCaballos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel11)))
+                            .addComponent(botonAnadirCliente)
+                            .addComponent(botonEditarCliente)
+                            .addComponent(botonEliminarCliente)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(batras1)
@@ -237,17 +286,74 @@ public class Clientes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_batras1MouseClicked
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void botonAnadirClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAnadirClienteMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseClicked
+        String matricula,motor,cilindrada,caballos,nombre,dni,telefono;
+        matricula=textoMatricula.getText();
+        motor=(String)textoMotor.getSelectedItem();
+        cilindrada=textoCilindrada.getText();
+        caballos=textoCaballos.getText();
+        nombre=textoNombre.getText();
+        dni=textoDni.getText();
+        telefono=textoTelefono.getText();
+        // metemos los datos en un array para despues insertarlos en la tabla
+        String[]datos={matricula,motor,cilindrada,caballos,nombre,dni,telefono};
+        
+        
+        // comprobamos que esten todos los datos introducidos
+        if("".equals(matricula) || "".equals(cilindrada) || "".equals(caballos) || "".equals(nombre)|| "".equals(dni) || "".equals(telefono)){
+            JOptionPane.showMessageDialog(null,"Debes introducir todos los datos del vehiculo","error",JOptionPane.OK_OPTION);
+        
+        }
+       else {
+            // si se han introducido todos los campos
+            Coche cocheNuevo=new Coche(matricula,motor,cilindrada,caballos,nombre,dni,telefono); // creamos objeto de tipo coche
+            Ficheros.coches.add(cocheNuevo); // metemos los valores introducidos
+            Ficheros.escribirFicheroCoches(); // metemos el coche en el fichero
+            tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
+            // ponemos todos los campos a null
+            textoMatricula.setText("");
+            textoCilindrada.setText("");
+            textoCaballos.setText("");
+            textoNombre.setText("");
+            textoDni.setText("");
+            textoTelefono.setText("");
+    }
+            
+    }//GEN-LAST:event_botonAnadirClienteMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void botonEditarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1MouseClicked
+        int editar=tablaClientes.getSelectedRow();
+        if(editar>=0){
+            textoMatricula.setText(tablaClientes.getValueAt(editar,0).toString());
+            textoMotor.setSelectedItem(tablaClientes.getValueAt(editar,1).toString());
+            textoCilindrada.setText(tablaClientes.getValueAt(editar,2).toString());
+            textoCaballos.setText(tablaClientes.getValueAt(editar,3).toString());
+            textoNombre.setText(tablaClientes.getValueAt(editar,4).toString());
+            textoDni.setText(tablaClientes.getValueAt(editar,5).toString());
+            textoTelefono.setText(tablaClientes.getValueAt(editar,6).toString());
+            GestionClientes.borrarCliente(Ficheros.coches.get(editar).getMatricula());
+            tablaCliente.removeRow(editar);
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"Seleccione un usuario","Error",1);
+        }
+        
+       
+    }//GEN-LAST:event_botonEditarClienteMouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void botonEliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel11MouseClicked
+         int eliminar=tablaClientes.getSelectedRow();
+        if(eliminar>=0){
+            GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula());
+                tablaCliente.removeRow(eliminar);
+        }else{
+            JOptionPane.showMessageDialog(null,"No hay usuarios para eliminar.","Error",0);
+        }
+        
+    }//GEN-LAST:event_botonEliminarClienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -286,10 +392,10 @@ public class Clientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel batras1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel botonAnadirCliente;
+    private javax.swing.JLabel botonEditarCliente;
+    private javax.swing.JLabel botonEliminarCliente;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -299,14 +405,14 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTable tablausuarios;
+    private javax.swing.JTable tablaClientes;
+    private javax.swing.JTextField textoCaballos;
+    private javax.swing.JTextField textoCilindrada;
+    private javax.swing.JTextField textoDni;
+    private javax.swing.JTextField textoMatricula;
+    private javax.swing.JComboBox<String> textoMotor;
+    private javax.swing.JTextField textoNombre;
+    private javax.swing.JTextField textoTelefono;
     private javax.swing.JLabel titulousuarios;
     // End of variables declaration//GEN-END:variables
 }

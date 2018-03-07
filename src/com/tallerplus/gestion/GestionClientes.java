@@ -1,5 +1,6 @@
 package com.tallerplus.gestion;
 
+import com.tallerplus.files.Ficheros;
 import com.tallerplus.objetos.Coche;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -38,15 +39,15 @@ public class GestionClientes {
      * Elimina un vehiculo de la lista de vehiculos que tenemos en el taller
      *
      * @param matricula matricula del vehiculo a eliminar
-     * @param coches lista de coches con los que trabajamos en el taller
+     *
      * @return coches lista de coches que trabajamos en el taller, con el
      * vehiculo en cuestion ya eliminado
      */
-    public static ArrayList<Coche> borrarCliente(String matricula, ArrayList<Coche> coches) {
+    public static ArrayList<Coche> borrarCliente(String matricula) {
         boolean borrado = false; // indicador de borrado que solo salta a true en caso de que se encuentre el coche, posteriormente trataremos que no se encuentre con el 
-        for (int i = 0; i < coches.size(); i++) {
-            if (coches.get(i).getMatricula().equals(matricula)) {
-                coches.remove(i);
+        for (int i = 0; i < Ficheros.coches.size(); i++) {
+            if (Ficheros.coches.get(i).getMatricula().equals(matricula)) {
+                Ficheros.coches.remove(i);
                 borrado = true;
                 break;
             }
@@ -58,7 +59,7 @@ public class GestionClientes {
         } else {
             JOptionPane.showMessageDialog(null,"no se ha encontrado el cliente a eliminar","Gestión de clientes",0);
         }
-        return coches;
+        return Ficheros.coches;
     }
 
 }
