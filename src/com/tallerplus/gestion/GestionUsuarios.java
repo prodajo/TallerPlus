@@ -5,38 +5,58 @@ import com.tallerplus.objetos.Usuario;
 import javax.swing.JOptionPane;
 
 public class GestionUsuarios {
+
     /**
      * Añade un usuario al ArrayList que recibe y lo devuelve.
+     *
      * @param usuario parámetro "usuario" del la clase "Usuario"
      * @param contrasena parámetro "contrasena" de la clase "Usuario"
      * @param tipo parámetro "tipo" de la clase "Usuario"
+     * @return repetido - indica si se ha añadido el usuario o no cumple los requisitos.
      */
-    public static void anadirUsuario(String usuario,String contrasena, String tipo){
-        Ficheros.usuarios.add(new Usuario(usuario,contrasena,tipo));
-        Ficheros.escribirFicheroUsuarios();
+    public static boolean anadirUsuario(String usuario, String contrasena, String tipo) {
+        boolean repetido = false;
+        for (Usuario elemento : Ficheros.usuarios) {
+            if (elemento.getUsuario().equals(usuario)) {
+                repetido = true;
+            }
+        }
+        if (repetido == false) {
+            Ficheros.usuarios.add(new Usuario(usuario, contrasena, tipo));
+            Ficheros.escribirFicheroUsuarios();
+        } else{
+            JOptionPane.showMessageDialog(null,"Ya existe un usuario con ese nombre","Añadir Usuario",0);
+        }
+        
+        return repetido;
     }
+
     /**
-     * Borra un usuario al ArrayList que recibe y lo devuelve con el mismo borrado.
+     * Borra un usuario al ArrayList que recibe y lo devuelve con el mismo
+     * borrado.
+     *
      * @param usuario Nombre del usuario que se desea borrar
+     * @return Indica si se ha borrado el usuario.
      */
-    public static boolean borrarUsuario(String usuario){
-        boolean bandera=true;
-        if (!usuario.equals("admin")){
-            boolean borrado=false;
-            for(int i=0;i<Ficheros.usuarios.size();i++){
-                if(Ficheros.usuarios.get(i).getUsuario().equals(usuario)){
+    public static boolean borrarUsuario(String usuario) {
+        boolean bandera = true;
+        if (!usuario.equals("admin")) {
+            boolean borrado = false;
+            for (int i = 0; i < Ficheros.usuarios.size(); i++) {
+                if (Ficheros.usuarios.get(i).getUsuario().equals(usuario)) {
                     Ficheros.usuarios.remove(i);
-                    borrado=true;
+                    borrado = true;
                     break;
                 }
             }
-            if(borrado==true)
+            if (borrado == true) {
                 Ficheros.escribirFicheroUsuarios();
-            else
+            } else {
                 System.out.println("No se han encontrado usuarios.");
-        }else{
-            bandera=false;
-            JOptionPane.showMessageDialog(null,"No puede borrar 'ADMIN'","Error", 0);
+            }
+        } else {
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "No puede borrar 'ADMIN'", "Error", 0);
         }
         return bandera;
     }

@@ -1,0 +1,6 @@
+Fecha factura: 07/03/2018         Matricula: 1234         
+         
+Descripcion: 
+problema ruedas
+
+         Total ---> 21.0€
