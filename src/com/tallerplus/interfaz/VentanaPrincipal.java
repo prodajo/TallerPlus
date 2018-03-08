@@ -6,6 +6,7 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.Login;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+
+//        switch (Login.getUsuarioLogueado()) {
+//            case "mecanico":
+//                banadircita.setEnabled(false);
+//                busuario.setEnabled(false);
+//                bcliente.setEnabled(false);
+//                bfactura.setEnabled(false);
+//                break;
+//            case "recepcion":
+//                busuario.setEnabled(false);
+//                break;
+//            default:
+//                ;
+//                break;
+//        }
     }
 
     /**
@@ -43,16 +59,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        bborrarcita = new javax.swing.JLabel();
-        banadircita = new javax.swing.JLabel();
         bhistorialcliente = new javax.swing.JLabel();
         bbuscarcita = new javax.swing.JLabel();
-        bcerrarcita = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        banadircita = new javax.swing.JLabel();
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(240, 240, 240));
@@ -112,20 +124,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(240, 240, 240));
         jLabel8.setText("Clientes");
 
-        bborrarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/004-error.png"))); // NOI18N
-        bborrarcita.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bborrarcitaMouseClicked(evt);
-            }
-        });
-
-        banadircita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/002-mas.png"))); // NOI18N
-        banadircita.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                banadircitaMouseClicked(evt);
-            }
-        });
-
         bhistorialcliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/historial.png"))); // NOI18N
         bhistorialcliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -140,32 +138,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        bcerrarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/003-exito.png"))); // NOI18N
-        bcerrarcita.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bcerrarcitaMouseClicked(evt);
-            }
-        });
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(240, 240, 240));
         jLabel14.setText("Añadir Cita");
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel15.setText("Borrar Cita");
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(240, 240, 240));
         jLabel16.setText("Buscar Cita");
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel19.setText("Cerrar Cita");
-
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(240, 240, 240));
         jLabel20.setText("Historial cliente");
+
+        banadircita.setIcon(new javax.swing.ImageIcon("C:\\Users\\dani_\\Documents\\NetBeansProjects\\Taller-Plus\\src\\com\\tallerplus\\icon\\calendario.png")); // NOI18N
+        banadircita.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                banadircitaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelprincipalLayout = new javax.swing.GroupLayout(panelprincipal);
         panelprincipal.setLayout(panelprincipalLayout);
@@ -179,52 +169,39 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addGroup(panelprincipalLayout.createSequentialGroup()
                                 .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(busuario)
-                                    .addComponent(jLabel6)
-                                    .addComponent(banadircita, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6))
                                 .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelprincipalLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel8)
                                         .addGap(105, 105, 105))
                                     .addGroup(panelprincipalLayout.createSequentialGroup()
+                                        .addGap(65, 65, 65)
                                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelprincipalLayout.createSequentialGroup()
-                                                .addGap(65, 65, 65)
-                                                .addComponent(bcliente))
-                                            .addGroup(panelprincipalLayout.createSequentialGroup()
-                                                .addGap(45, 45, 45)
-                                                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel15)
-                                                    .addComponent(bborrarcita, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jLabel16)
+                                            .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(bbuscarcita, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(bcliente)))
                                         .addGap(45, 45, 45))))
                             .addGroup(panelprincipalLayout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(290, 290, 290)))
+                                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(banadircita))
+                                .addGap(238, 238, 238)))
+                        .addGap(20, 20, 20)
                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bbuscarcita, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelprincipalLayout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel7))
-                            .addComponent(jLabel16)
-                            .addComponent(bfactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bcerrarcita, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel19))
-                        .addGap(47, 47, 47)
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20)
-                            .addComponent(bhistorialcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))
-                    .addGroup(panelprincipalLayout.createSequentialGroup()
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(21, 21, 21))))
+                            .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(bfactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bhistorialcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(366, Short.MAX_VALUE))
         );
         panelprincipalLayout.setVerticalGroup(
             panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelprincipalLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelprincipalLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel2)
                 .addGap(19, 19, 19)
@@ -241,30 +218,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bfactura)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel20))
                 .addGap(18, 18, 18)
                 .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelprincipalLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bborrarcita, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(banadircita, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelprincipalLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bbuscarcita, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bcerrarcita, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bhistorialcliente, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(38, 38, 38))
+                    .addComponent(banadircita)
+                    .addComponent(bbuscarcita)
+                    .addComponent(bhistorialcliente))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -280,71 +246,73 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    /**
-     * Evento al clickar foto "Añadir Cita"
-     * @param evt 
-     */
-    private void banadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadircitaMouseClicked
-        AnadirCita ventanaAnadirCita=new AnadirCita();
-        dispose();
 
-    }//GEN-LAST:event_banadircitaMouseClicked
-    /**
-     * Evento al clickar foto "Borrar Cita"
-     * @param evt 
-     */
-    private void bborrarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarcitaMouseClicked
-        BorrarCita ventanaBorrarCita=new BorrarCita();
-        dispose();
-    }//GEN-LAST:event_bborrarcitaMouseClicked
     /**
      * Evento al clickar foto "Buscar Cita"
-     * @param evt 
+     *
+     * @param evt
      */
     private void bbuscarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseClicked
-        BuscarCita ventanaBuscarCita=new BuscarCita();
+        BuscarCita ventanaBuscarCita = new BuscarCita();
         dispose();
     }//GEN-LAST:event_bbuscarcitaMouseClicked
-    /**
-     * Evento al clickar foto "Cerrar Cita"
-     * @param evt 
-     */
-    private void bcerrarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcerrarcitaMouseClicked
-        CerrarCita ventanaCerrarCita=new CerrarCita();
-        dispose();
-    }//GEN-LAST:event_bcerrarcitaMouseClicked
+
     /**
      * Evento al clickar foto "Historial Cliente"
-     * @param evt 
+     *
+     * @param evt
      */
     private void bhistorialclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bhistorialclienteMouseClicked
-        HistorialCliente ventanaHistorialCliente=new HistorialCliente();
+        HistorialCliente ventanaHistorialCliente = new HistorialCliente();
         dispose();
     }//GEN-LAST:event_bhistorialclienteMouseClicked
     /**
      * Evento al clickar foto "Usuarios"
-     * @param evt 
+     *
+     * @param evt
      */
     private void busuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_busuarioMouseClicked
-        Usuarios ventanaUsuarios=new Usuarios();
-        dispose();
+        if(Login.getUsuarioLogueado().equals("admin")){
+                Usuarios ventanaUsuarios = new Usuarios();
+                dispose();
+        }else
+            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
     }//GEN-LAST:event_busuarioMouseClicked
     /**
      * Evento al clickar foto "Clientes"
-     * @param evt 
+     *
+     * @param evt
      */
     private void bclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bclienteMouseClicked
-        Clientes ventanaClientes=new Clientes();
-        dispose();
+        if(!Login.getUsuarioLogueado().equals("mecanico")){
+            Clientes ventanaClientes = new Clientes();
+            dispose();
+        }else
+            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
     }//GEN-LAST:event_bclienteMouseClicked
     /**
      * Evento al clickar foto "Facturas"
-     * @param evt 
+     *
+     * @param evt
      */
     private void bfacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bfacturaMouseClicked
-        Facturas ventanaFacturas=new Facturas();
-        dispose();
+        if(!Login.getUsuarioLogueado().equals("mecanico")){    
+            Facturas ventanaFacturas = new Facturas();
+            dispose();
+        }else
+            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
     }//GEN-LAST:event_bfacturaMouseClicked
+    /**
+     * Evento al clickar foto "Añadir Citas"
+     * @param evt 
+     */
+    private void banadircitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banadircitaMouseClicked
+        if(!Login.getUsuarioLogueado().equals("mecanico")){    
+            Citas ventanaCitas = new Citas();
+            dispose();
+        }else
+            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
+    }//GEN-LAST:event_banadircitaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -376,66 +344,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
             }
         });
     }
-public void mostrar(){
-    setVisible(true);
-}
+
+    public void mostrar() {
+        setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel banadircita;
-    private javax.swing.JLabel batras;
-    private javax.swing.JLabel batras1;
-    private javax.swing.JLabel bañadircita;
-    private javax.swing.JLabel bañadircita1;
-    private javax.swing.JLabel bborrarcita;
     private javax.swing.JLabel bbuscarcita;
-    private javax.swing.JLabel bcancelarcita;
-    private javax.swing.JLabel bcancelarcita1;
-    private javax.swing.JLabel bcerrarcita;
     private javax.swing.JLabel bcliente;
     private javax.swing.JLabel bfactura;
     private javax.swing.JLabel bhistorialcliente;
     private javax.swing.JLabel busuario;
-    private javax.swing.JTextField indescripcion;
-    private javax.swing.JTextField indescripcion1;
-    private javax.swing.JTextField inestado;
-    private javax.swing.JTextField inestado1;
-    private javax.swing.JTextField infechahora;
-    private javax.swing.JTextField infechahora1;
-    private javax.swing.JTextField inmatricula;
-    private javax.swing.JTextField inmatricula1;
-    private javax.swing.JTextField inprecio;
-    private javax.swing.JTextField inprecio1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel labelfechahora;
-    private javax.swing.JLabel labelfechahora1;
-    private javax.swing.JPanel panelacita;
-    private javax.swing.JPanel panelacita1;
     public static javax.swing.JPanel panelprincipal;
     // End of variables declaration//GEN-END:variables
 }

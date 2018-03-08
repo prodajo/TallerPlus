@@ -48,7 +48,7 @@ public class GestionFacturas {
         try {
             Desktop.getDesktop().open(fichero);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null,"Erro al abrir la factura","Error",0);
+            JOptionPane.showMessageDialog(null,"Error al abrir la factura","Error",0);
         }
     }
 }
