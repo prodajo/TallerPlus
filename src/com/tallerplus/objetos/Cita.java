@@ -1,6 +1,6 @@
 package com.tallerplus.objetos;
 // objeto para cada una de las citas que tiene un coche en el taller
-public class Cita {
+public class Cita implements Comparable {
     private String matricula;
     private String fechaHora;
     private String descripcion;
@@ -10,6 +10,10 @@ public class Cita {
     public Cita() {
     }
 
+    /**
+     *
+     * @return matricula
+     */
     public String getMatricula() {
         return matricula;
     }
@@ -61,6 +65,18 @@ public class Cita {
     @Override
     public String toString() {
         return "cita del vehiculo "+matricula+" para el "+fechaHora+"con precio de reparacion "+precio+" y estado de reparacion "+estado;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Cita cita=(Cita)o;
+        
+        if(this.fechaHora.compareTo(cita.fechaHora)==0)
+            return 0;
+        else if(this.fechaHora.compareTo(cita.fechaHora)>0)
+            return 1;
+        else
+            return -1;
     }
     
     

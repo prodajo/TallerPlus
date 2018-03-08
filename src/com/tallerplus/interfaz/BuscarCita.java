@@ -10,6 +10,7 @@ import com.tallerplus.gestion.GestionCitas;
 import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.objetos.Cita;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +41,7 @@ public class BuscarCita extends javax.swing.JFrame {
         ArrayList<Cita> citas = new ArrayList();
 
         citas = Ficheros.citas;
+        Collections.sort(citas);
         Iterator<Cita> it = citas.iterator();
         while (it.hasNext()) {
             Cita cita = it.next();
@@ -274,6 +276,7 @@ public class BuscarCita extends javax.swing.JFrame {
         }
 
         //Añadimos las citas encontadas a la tabla
+        Collections.sort(encontradas);
         for (Cita elemento : encontradas) {
             String anadir[] = new String[5];
             anadir[0] = elemento.getMatricula();
@@ -314,6 +317,7 @@ public class BuscarCita extends javax.swing.JFrame {
         }
 
         //Añadimos las citas encontadas a la tabla
+        Collections.sort(encontradas);
         for (Cita elemento : encontradas) {
             String anadir[] = new String[5];
             anadir[0] = elemento.getMatricula();
