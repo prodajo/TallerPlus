@@ -7,7 +7,6 @@ package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionClientes;
-import com.tallerplus.gestion.GestionUsuarios;
 import com.tallerplus.objetos.Coche;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -39,7 +38,6 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
         cochesClientes=Ficheros.coches;
         
         // añadimos los coches a la tabla
-         //Añadimos las citas encontadas a la tabla
         for (Coche elemento : cochesClientes) {
             String anadir[] = new String[7];
             anadir[0] = elemento.getMatricula();
@@ -307,10 +305,9 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
         }
        else {
             // si se han introducido todos los campos
-            Coche cocheNuevo=new Coche(matricula,motor,cilindrada,caballos,nombre,dni,telefono); // creamos objeto de tipo coche
-            Ficheros.coches.add(cocheNuevo); // metemos los valores introducidos
-            Ficheros.escribirFicheroCoches(); // metemos el coche en el fichero
-            tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
+            boolean encontrado=GestionClientes.anadirCliente(matricula, motor, cilindrada, caballos, nombre, dni, telefono);
+            if(encontrado==false)
+                tablaCliente.addRow(datos); // lo añadimos en la lista que tenemos en pantalla
             // ponemos todos los campos a null
             textoMatricula.setText("");
             textoCilindrada.setText("");
@@ -323,7 +320,7 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
     }//GEN-LAST:event_botonAnadirClienteMouseClicked
 
     private void botonEditarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarClienteMouseClicked
-        // TODO add your handling code here:
+        String eb="editar";
         int editar=tablaClientes.getSelectedRow();
         if(editar>=0){
             textoMatricula.setText(tablaClientes.getValueAt(editar,0).toString());
@@ -333,7 +330,7 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
             textoNombre.setText(tablaClientes.getValueAt(editar,4).toString());
             textoDni.setText(tablaClientes.getValueAt(editar,5).toString());
             textoTelefono.setText(tablaClientes.getValueAt(editar,6).toString());
-            GestionClientes.borrarCliente(Ficheros.coches.get(editar).getMatricula());
+            GestionClientes.borrarCliente(Ficheros.coches.get(editar).getMatricula(),eb);
             tablaCliente.removeRow(editar);
             
         }else{
@@ -344,11 +341,11 @@ DefaultTableModel tablaCliente=new DefaultTableModel();
     }//GEN-LAST:event_botonEditarClienteMouseClicked
 
     private void botonEliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEliminarClienteMouseClicked
-        // TODO add your handling code here:
-         int eliminar=tablaClientes.getSelectedRow();
+        String eb="eliminar";
+        int eliminar=tablaClientes.getSelectedRow();
         if(eliminar>=0){
-            GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula());
-                tablaCliente.removeRow(eliminar);
+            GestionClientes.borrarCliente(Ficheros.coches.get(eliminar).getMatricula(),eb);
+            tablaCliente.removeRow(eliminar);
         }else{
             JOptionPane.showMessageDialog(null,"No hay usuarios para eliminar.","Error",0);
         }
