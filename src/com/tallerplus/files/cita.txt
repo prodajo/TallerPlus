@@ -1,5 +1,7 @@
-1234,12/12/2015,problema ruedas,21.0,Cerrado
-1111,12/07/2015,problema centralita,124.0,Cerrado
-4321,21/06/2011,Fallo ruedas,43.0,Cerrado
-3333,DD/MM/AAAA HH:MM,,333.0,Cerrado
-4444,DD/MM/AAAA HH:MM,,4444.0,Cerrado
+12548,12/12/2012,mmm,200.0,Pendiente
+8523,12/12/2012 16:00,kjh,25.0,En proceso
+9856,12/12/2013,cambio de neumaticos,32.0,Pendiente
+2589,12/12/2017 16:00,por ver,200.0,Pendiente
+12345,12/12/2017 20:00,por ver,23.0,Pendiente
+1234,19/12/2015 20:00,problemas motor,20.0,En proceso
+2566,23/12/2011,lkj,85.0,En proceso
