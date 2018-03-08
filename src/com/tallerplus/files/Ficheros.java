@@ -31,9 +31,9 @@ public class Ficheros {
     static String[] atributoscita = new String[5];
 
     //Ficheros
-    static File ficherocoches = new File("src/com/tallerplus/files/coche.txt");
-    static File ficherousuarios = new File("src/com/tallerplus/files/usuario.txt");
-    static File ficherocitas = new File("src/com/tallerplus/files/cita.txt");
+    static File ficherocoches = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\TallerPlus\\src\\com\\tallerplus\\files\\coche.txt");
+    static File ficherousuarios = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\TallerPlus\\src\\com\\tallerplus\\files\\usuario.txt");
+    static File ficherocitas = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\TallerPlus\\src\\com\\tallerplus\\files\\cita.txt");
 
     static String linea;
 
