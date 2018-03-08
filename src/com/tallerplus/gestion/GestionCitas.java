@@ -102,10 +102,11 @@ public class GestionCitas {
         boolean encontrado=false;
         Cita citaConsultada=new Cita();
         for(int i=0;i<Ficheros.citas.size();i++){
-            if(Ficheros.citas.get(i).getFechaHora().equals(fechaHora)){
+            encontrado=Ficheros.citas.get(i).getFechaHora().contains(fechaHora);
+            if(encontrado==true){
                 citaConsultada=Ficheros.citas.get(i);
                 encontradas.add(citaConsultada);
-                encontrado=true;
+                break;
             }
         }
         
