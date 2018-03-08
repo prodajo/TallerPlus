@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Login {
-    static String usuario_logueado;
+    private static String usuario_logueado;
     
     public static String getUsuarioLogueado(){
         return usuario_logueado;
@@ -24,18 +24,9 @@ public class Login {
         boolean encontrado=false;
         for(int i=0;i<usuarios.size();i++){
             if((usuarios.get(i).getUsuario().equals(usuario))&&(usuarios.get(i).getContrasena().equals(contrasena))){
-                if(usuarios.get(i).getTipo().equals("admin"))
-                    //Abrir ventana administrador.
-                    lanzarVentanaPrincipal();
-                else if(usuarios.get(i).getTipo().equals("recepcion"))
-                    //Abrir ventana recepcion
-                    lanzarVentanaPrincipal();
-                    else
-                    //abrir ventana mecanico
-                    lanzarVentanaPrincipal();
-                
+                lanzarVentanaPrincipal();
                 encontrado=true;  
-                usuario_logueado=usuarios.get(i).getUsuario();
+                usuario_logueado=usuarios.get(i).getTipo();
             }
             
         }
