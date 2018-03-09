@@ -8,8 +8,10 @@ package com.tallerplus.interfaz;
 import com.tallerplus.files.Ficheros;
 import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.gestion.GestionVentas;
+import com.tallerplus.gestion.Login;
 import com.tallerplus.objetos.Venta;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,10 +20,10 @@ import javax.swing.table.DefaultTableModel;
  * @author dani_
  */
 public class VentaCoches extends javax.swing.JFrame {
-    
+
     DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Venta> enventa = new ArrayList();
-    
+
     public VentaCoches() {
         initComponents();
         setLocationRelativeTo(null);
@@ -285,39 +287,48 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void bañadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseClicked
-        String modelo = inmodelo.getText();
-        String motor = (String) inmotor.getSelectedItem();
-        String cilindrada = incilindrada.getText();
-        String caballos = incaballos.getText();
-        Float precio = Float.parseFloat(inprecio.getText());
-        
-        GestionVentas.anadirVenta(modelo, precio, motor, cilindrada, caballos);
-        
-        inmodelo.setText("");
-        incilindrada.setText("");
-        incaballos.setText("");
-        inprecio.setText("");
+        if (Login.getUsuarioLogueado().equals("admin")) {
+            String modelo = inmodelo.getText();
+            String motor = (String) inmotor.getSelectedItem();
+            String cilindrada = incilindrada.getText();
+            String caballos = incaballos.getText();
+            Float precio = Float.parseFloat(inprecio.getText());
 
-        //Borramos contanido anterior de la tabla
-        for (int i = 0; i < tabla.getRowCount(); i++) {
-            tabla.removeRow(i);
-            i -= 1;
+            GestionVentas.anadirVenta(modelo, precio, motor, cilindrada, caballos);
+
+            inmodelo.setText("");
+            incilindrada.setText("");
+            incaballos.setText("");
+            inprecio.setText("");
+
+            //Borramos contanido anterior de la tabla
+            for (int i = 0; i < tabla.getRowCount(); i++) {
+                tabla.removeRow(i);
+                i -= 1;
+            }
+
+            //Recibimos los coches encontrados
+            enventa = Ficheros.ventas;
+
+            //Añadimos los coches encontados a la tabla
+            for (Venta elemento : enventa) {
+                String anadir[] = new String[5];
+                anadir[0] = elemento.getModelo();
+                anadir[1] = elemento.getPrecio().toString();
+                anadir[2] = elemento.getMotor();
+                anadir[3] = elemento.getCilindrada();
+                anadir[4] = elemento.getCaballos();
+                tabla.addRow(anadir);
+            }
+            this.tablabusqueda.setModel(tabla);
+        } else {
+            JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0);
+            inmodelo.setText("");
+            incilindrada.setText("");
+            incaballos.setText("");
+            inprecio.setText("");
         }
 
-        //Recibimos los coches encontrados
-        enventa = Ficheros.ventas;
-
-        //Añadimos los coches encontados a la tabla
-        for (Venta elemento : enventa) {
-            String anadir[] = new String[5];
-            anadir[0] = elemento.getModelo();
-            anadir[1] = elemento.getPrecio().toString();
-            anadir[2] = elemento.getMotor();
-            anadir[3] = elemento.getCilindrada();
-            anadir[4] = elemento.getCaballos();
-            tabla.addRow(anadir);
-        }
-        this.tablabusqueda.setModel(tabla);
     }//GEN-LAST:event_bañadirMouseClicked
     /**
      * Botón para borrar un coche de las ventas.
@@ -325,13 +336,18 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void bborrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bborrarMouseClicked
-        int eliminar = tablabusqueda.getSelectedRow();
-        if (eliminar >= 0) {
-            boolean correcto = GestionVentas.borrarVenta(eliminar, false);
-            if (correcto != false) {
-                tabla.removeRow(eliminar);
+
+        if (Login.getUsuarioLogueado().equals("admin")) {
+            int eliminar = tablabusqueda.getSelectedRow();
+            if (eliminar >= 0) {
+                boolean correcto = GestionVentas.borrarVenta(eliminar, false);
+                if (correcto != false) {
+                    tabla.removeRow(eliminar);
+                }
             }
-        }        
+        } else {
+            JOptionPane.showMessageDialog(null, "No tienes permisos para realizar esta operación", "Error", 0);
+        }
     }//GEN-LAST:event_bborrarMouseClicked
 
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
@@ -341,12 +357,12 @@ public class VentaCoches extends javax.swing.JFrame {
             String cilindrada = Ficheros.ventas.get(eliminar).getCilindrada();
             String caballos = Ficheros.ventas.get(eliminar).getCaballos();
             boolean correcto = GestionVentas.borrarVenta(eliminar, true);
-            
+
             if (correcto != false) {
-                GestionClientes.anadirCliente("A añadir", motor, cilindrada, caballos, "A añadir", "A añadir", "A añadir");                
+                GestionClientes.anadirCliente("A añadir", motor, cilindrada, caballos, "A añadir", "A añadir", "A añadir");
                 tabla.removeRow(eliminar);
             }
-        }        
+        }
     }//GEN-LAST:event_bvenderMouseClicked
 
     /**

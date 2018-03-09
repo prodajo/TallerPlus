@@ -337,7 +337,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_banadircitaMouseClicked
 
     private void bcochesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseClicked
-        if(Login.getUsuarioLogueado().equals("admin")){
+        if(!Login.getUsuarioLogueado().equals("mecanico")){
                 VentaCoches ventanaVentas = new VentaCoches();
                 dispose();
         }else
