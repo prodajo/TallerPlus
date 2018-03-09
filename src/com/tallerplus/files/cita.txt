@@ -1,7 +1,10 @@
 12548,12/12/2012,mmm,200.0,Pendiente
+12548,12/12/2012,mmm,200.0,Pendiente
 8523,12/12/2012 16:00,kjh,25.0,En proceso
 9856,12/12/2013,cambio de neumaticos,32.0,Pendiente
 2589,12/12/2017 16:00,por ver,200.0,Pendiente
 12345,12/12/2017 20:00,por ver,23.0,Pendiente
 1234,19/12/2015 20:00,problemas motor,20.0,En proceso
+2566,23/12/2011,lkj,85.0,Pendiente
 2566,23/12/2011,lkj,85.0,En proceso
+2566,23/12/2011,lkj,85.0,Finalizado

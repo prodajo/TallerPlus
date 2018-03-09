@@ -65,6 +65,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         banadircita = new javax.swing.JLabel();
+        bcoches = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(240, 240, 240));
@@ -131,7 +133,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        bbuscarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/busqueda.png"))); // NOI18N
+        bbuscarcita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/bloc.png"))); // NOI18N
         bbuscarcita.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bbuscarcitaMouseClicked(evt);
@@ -144,7 +146,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel16.setText("Buscar Cita");
+        jLabel16.setText("Ver Citas");
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(240, 240, 240));
@@ -156,6 +158,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 banadircitaMouseClicked(evt);
             }
         });
+
+        bcoches.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/tallerplus/icon/coche.png"))); // NOI18N
+        bcoches.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bcochesMouseClicked(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel9.setText("Coches en Venta");
 
         javax.swing.GroupLayout panelprincipalLayout = new javax.swing.GroupLayout(panelprincipal);
         panelprincipal.setLayout(panelprincipalLayout);
@@ -176,7 +189,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                         .addComponent(jLabel8)
                                         .addGap(105, 105, 105))
                                     .addGroup(panelprincipalLayout.createSequentialGroup()
-                                        .addGap(65, 65, 65)
+                                        .addGap(90, 90, 90)
                                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel16)
                                             .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -188,16 +201,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                     .addComponent(jLabel14)
                                     .addComponent(banadircita))
                                 .addGap(238, 238, 238)))
-                        .addGap(20, 20, 20)
+                        .addGap(45, 45, 45)
                         .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(bfactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(bhistorialcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20)))
+                            .addComponent(jLabel20)
+                            .addGroup(panelprincipalLayout.createSequentialGroup()
+                                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(bfactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(90, 90, 90)
+                                .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(bcoches)))))
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         panelprincipalLayout.setVerticalGroup(
             panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,9 +233,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(bcliente)
                             .addComponent(busuario)))
                     .addGroup(panelprincipalLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bfactura)))
+                        .addGroup(panelprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bfactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bcoches, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -253,7 +275,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt
      */
     private void bbuscarcitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bbuscarcitaMouseClicked
-        BuscarCita ventanaBuscarCita = new BuscarCita();
+        VerCitas ventanaBuscarCita = new VerCitas();
         dispose();
     }//GEN-LAST:event_bbuscarcitaMouseClicked
 
@@ -314,6 +336,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);
     }//GEN-LAST:event_banadircitaMouseClicked
 
+    private void bcochesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bcochesMouseClicked
+        if(Login.getUsuarioLogueado().equals("admin")){
+                VentaCoches ventanaVentas = new VentaCoches();
+                dispose();
+        }else
+            JOptionPane.showMessageDialog(null,"No tienes permisos para acceder aquí", "Error",0);        
+    }//GEN-LAST:event_bcochesMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -356,6 +386,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel banadircita;
     private javax.swing.JLabel bbuscarcita;
     private javax.swing.JLabel bcliente;
+    private javax.swing.JLabel bcoches;
     private javax.swing.JLabel bfactura;
     private javax.swing.JLabel bhistorialcliente;
     private javax.swing.JLabel busuario;
@@ -369,6 +400,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public static javax.swing.JPanel panelprincipal;
     // End of variables declaration//GEN-END:variables
 }

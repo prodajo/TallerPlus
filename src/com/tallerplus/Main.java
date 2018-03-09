@@ -9,6 +9,7 @@ public class Main {
         Ficheros.leerFicheroCoches();
         Ficheros.leerFicheroCitas();
         Ficheros.leerFicheroUsuarios();
+        Ficheros.leerFicheroVentas();
         
         //Lanzamos ventana Login para iniciar el programa.
         Login.lanzarVentanaLogin();

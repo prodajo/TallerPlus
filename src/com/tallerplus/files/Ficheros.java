@@ -8,6 +8,7 @@ package com.tallerplus.files;
 import com.tallerplus.objetos.Cita;
 import com.tallerplus.objetos.Coche;
 import com.tallerplus.objetos.Usuario;
+import com.tallerplus.objetos.Venta;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -25,15 +26,18 @@ public class Ficheros {
     public static ArrayList<Usuario> usuarios=new ArrayList();
     public static ArrayList<Coche> coches=new ArrayList();
     public static ArrayList <Cita> citas=new ArrayList();
+    public static ArrayList <Venta> ventas=new ArrayList();
     //Array Atributos
     static String[] atributoscoche = new String[7];
     static String[] atributosusuario = new String[3];
     static String[] atributoscita = new String[5];
+    static String[] atributosventas=new String[5];
 
     //Ficheros
-    static File ficherocoches = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\TallerPlus\\src\\com\\tallerplus\\files\\coche.txt");
-    static File ficherousuarios = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\TallerPlus\\src\\com\\tallerplus\\files\\usuario.txt");
-    static File ficherocitas = new File("C:\\Users\\jose\\Documents\\NetBeansProjects\\TallerPlus\\src\\com\\tallerplus\\files\\cita.txt");
+    static File ficherocoches = new File("src\\com\\tallerplus\\files\\coche.txt");
+    static File ficherousuarios = new File("src\\com\\tallerplus\\files\\usuario.txt");
+    static File ficherocitas = new File("src\\com\\tallerplus\\files\\cita.txt");
+    static File ficheroventas = new File("src\\com\\tallerplus\\files\\ventas.txt");
 
     static String linea;
 
@@ -89,6 +93,22 @@ public class Ficheros {
         }
     }
 
+    public static void leerFicheroVentas(){
+        try {
+            Scanner sc;
+            sc = new Scanner(ficheroventas);
+            while (sc.hasNextLine()) {
+                linea = sc.nextLine();
+                atributosventas = linea.split(",");
+                Venta c = new Venta(atributosventas[0], Float.parseFloat(atributosventas[1]), atributosventas[2], atributosventas[3],atributosventas[4]);
+                ventas.add(c);
+            }
+            sc.close();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Error al leer ventas");
+        }        
+    }
+    
     public static void escribirFicheroCoches() {
 
         try {
@@ -102,6 +122,24 @@ public class Ficheros {
                         + "," + elemento.getNombreDueño()
                         + "," + elemento.getDni()
                         + "," + elemento.getTelefono()+"\n");
+            }
+            escribir.close();
+        } catch (IOException ex) {
+            System.out.println("Error al escribir");
+        }   
+    }
+
+    public static void escribirFicheroVentas() {
+
+        try {
+            FileWriter escribir;
+            escribir = new FileWriter(ficheroventas);
+            for (Venta elemento : ventas) {
+                escribir.write(elemento.getModelo()
+                        + "," + elemento.getPrecio()
+                        + "," + elemento.getMotor()
+                        + "," + elemento.getCilindrada()
+                        + "," + elemento.getCaballos()+"\n");
             }
             escribir.close();
         } catch (IOException ex) {
