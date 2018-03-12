@@ -55,6 +55,8 @@ public class Ficheros {
             sc.close();
         } catch (FileNotFoundException ex) {
             System.out.println("Error al leer coches");
+        } catch (ArrayIndexOutOfBoundsException ex1){
+            System.out.println("No hay coches en el fichero");
         }
 
     }
