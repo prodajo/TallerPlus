@@ -12,7 +12,8 @@ public class GestionUsuarios {
      * @param usuario parámetro "usuario" del la clase "Usuario"
      * @param contrasena parámetro "contrasena" de la clase "Usuario"
      * @param tipo parámetro "tipo" de la clase "Usuario"
-     * @return repetido - indica si se ha añadido el usuario o no cumple los requisitos.
+     * @return repetido - indica si se ha añadido el usuario o no cumple los
+     * requisitos.
      */
     public static boolean anadirUsuario(String usuario, String contrasena, String tipo) {
         boolean repetido = false;
@@ -24,10 +25,10 @@ public class GestionUsuarios {
         if (repetido == false) {
             Ficheros.usuarios.add(new Usuario(usuario, contrasena, tipo));
             Ficheros.escribirFicheroUsuarios();
-        } else{
-            JOptionPane.showMessageDialog(null,"Ya existe un usuario con ese nombre","Añadir Usuario",0);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese nombre", "Añadir Usuario", 0);
         }
-        
+
         return repetido;
     }
 
@@ -59,5 +60,17 @@ public class GestionUsuarios {
             JOptionPane.showMessageDialog(null, "No puede borrar 'ADMIN'", "Error", 0);
         }
         return bandera;
+    }
+
+    public static boolean editarUsuario(int numero,String usuario, String contrasena, String tipo) {
+        boolean editado = false;
+        Ficheros.usuarios.set(numero, new Usuario(usuario, contrasena, tipo));
+        for(Usuario elemento: Ficheros.usuarios)
+            System.out.println(elemento);
+        editado = true;
+
+        Ficheros.escribirFicheroUsuarios();
+ 
+        return editado;
     }
 }

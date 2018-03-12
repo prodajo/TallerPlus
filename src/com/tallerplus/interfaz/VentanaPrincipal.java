@@ -22,21 +22,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-
-//        switch (Login.getUsuarioLogueado()) {
-//            case "mecanico":
-//                banadircita.setEnabled(false);
-//                busuario.setEnabled(false);
-//                bcliente.setEnabled(false);
-//                bfactura.setEnabled(false);
-//                break;
-//            case "recepcion":
-//                busuario.setEnabled(false);
-//                break;
-//            default:
-//                ;
-//                break;
-//        }
     }
 
     /**
