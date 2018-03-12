@@ -23,7 +23,11 @@ public class VentaCoches extends javax.swing.JFrame {
 
     DefaultTableModel tabla = new DefaultTableModel();
     ArrayList<Venta> enventa = new ArrayList();
-
+      static String motor;
+      static String caballos;
+      static String cilindrada;
+      static boolean correcto;
+      static int eliminar;
     public VentaCoches() {
         initComponents();
         setLocationRelativeTo(null);
@@ -35,6 +39,7 @@ public class VentaCoches extends javax.swing.JFrame {
         tabla.addColumn("Motor");
         tabla.addColumn("Cilindrada");
         tabla.addColumn("Caballos");
+       
 
         //Recibimos los coches encontrados
         enventa = Ficheros.ventas;
@@ -340,7 +345,7 @@ public class VentaCoches extends javax.swing.JFrame {
         if (Login.getUsuarioLogueado().equals("admin")) {
             int eliminar = tablabusqueda.getSelectedRow();
             if (eliminar >= 0) {
-                boolean correcto = GestionVentas.borrarVenta(eliminar, false);
+                 boolean correcto = GestionVentas.borrarVenta(eliminar, false);
                 if (correcto != false) {
                     tabla.removeRow(eliminar);
                 }
@@ -351,18 +356,15 @@ public class VentaCoches extends javax.swing.JFrame {
     }//GEN-LAST:event_bborrarMouseClicked
 
     private void bvenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bvenderMouseClicked
-        int eliminar = tablabusqueda.getSelectedRow();
+         eliminar = tablabusqueda.getSelectedRow();
         if (eliminar >= 0) {
-            String motor = Ficheros.ventas.get(eliminar).getMotor();
-            String cilindrada = Ficheros.ventas.get(eliminar).getCilindrada();
-            String caballos = Ficheros.ventas.get(eliminar).getCaballos();
-            boolean correcto = GestionVentas.borrarVenta(eliminar, true);
-
-            if (correcto != false) {
-                GestionClientes.anadirCliente("A añadir", motor, cilindrada, caballos, "A añadir", "A añadir", "A añadir");
-                tabla.removeRow(eliminar);
-            }
-        }
+              motor = Ficheros.ventas.get(eliminar).getMotor();
+              cilindrada = Ficheros.ventas.get(eliminar).getCilindrada();
+              caballos = Ficheros.ventas.get(eliminar).getCaballos();
+              correcto = GestionVentas.borrarVenta(eliminar, true);
+             ClientesVentas clienteventas=new ClientesVentas();
+             tabla.removeRow(VentaCoches.eliminar);
+        }else System.out.println("errror");
     }//GEN-LAST:event_bvenderMouseClicked
 
     /**
