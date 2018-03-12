@@ -53,7 +53,6 @@ public class GestionClientes {
             }
 
         }
-        // implementar en graficos
         if (borrado == true) {
             Ficheros.escribirFicheroCoches();
             if(eb.equals("borrar"))
