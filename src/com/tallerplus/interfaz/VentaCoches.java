@@ -6,13 +6,14 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.files.Ficheros;
-import com.tallerplus.gestion.GestionClientes;
 import com.tallerplus.gestion.GestionVentas;
 import com.tallerplus.gestion.Login;
 import com.tallerplus.objetos.Venta;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import libreria.ValidarFormatos; // importamos la libreria que creamos
+
 
 /**
  * Interfaz venta de coches.
@@ -292,7 +293,12 @@ public class VentaCoches extends javax.swing.JFrame {
      * @param evt
      */
     private void bañadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bañadirMouseClicked
+        boolean caballosvalidos=ValidarFormatos.isNumeric(incaballos.getText());// realizado para pruebas IMPLANTAR 
+        if(caballosvalidos==true)
+            System.out.println("caballos validos");
+        else System.out.println("caballos no validos");
         if (Login.getUsuarioLogueado().equals("admin")) {
+            
             String modelo = inmodelo.getText();
             String motor = (String) inmotor.getSelectedItem();
             String cilindrada = incilindrada.getText();
