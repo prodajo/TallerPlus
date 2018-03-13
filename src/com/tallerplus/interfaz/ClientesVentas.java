@@ -6,6 +6,7 @@
 package com.tallerplus.interfaz;
 
 import com.tallerplus.gestion.GestionClientes;
+import static jdk.nashorn.internal.runtime.JSType.isNumber;
 
 /**
  *
@@ -16,11 +17,13 @@ public class ClientesVentas extends javax.swing.JFrame {
     /**
      * Creates new form ClientesVentas
      */
+    String telefono;
     public ClientesVentas() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
+        
     }
 
     /**
@@ -151,7 +154,11 @@ public class ClientesVentas extends javax.swing.JFrame {
     private void botonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonOkMouseClicked
         // TODO add your handling code here:
                  if (VentaCoches.correcto != false) {
-                            GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada, VentaCoches.caballos,textoNombre.getText(),textoDni.getText(),textoTelefono.getText());
+                     if(!isNumber(textoTelefono.getText())){
+                          telefono=textoTelefono.getText();
+                          GestionClientes.anadirCliente(textoMatricula.getText(), VentaCoches.motor, VentaCoches.cilindrada, VentaCoches.caballos,textoNombre.getText(),textoDni.getText(),telefono);
+                        }
+                            
                           
                         }else System.out.println("no se pudo añadir el cliente");
                  dispose();
