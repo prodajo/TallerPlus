@@ -1,3 +1,3 @@
 admin,admin,admin
-mecanico,mecanico,mecanico
-recepcion,recepcion,recepcion
+dani,admin,recepcion
+jose,admin,mecanico
